@@ -1,0 +1,67 @@
+{
+  "pages": [
+    "pages/order/order",
+    "pages/home/home",
+    "pages/business/product/product",
+    "example/panel/panel",
+    "pages/business/setting/setting",
+    "pages/index/index",
+    "pages/logs/logs",
+    "example/index",
+    "example/button/button",
+    "example/list/list",
+    "example/slideview/slideview",
+    "example/input/input",
+    "example/slider/slider",
+    "example/uploader/uploader",
+    "example/article/article",
+    "example/badge/badge",
+    "example/flex/flex",
+    "example/footer/footer",
+    "example/gallery/gallery",
+    "example/grid/grid",
+    "example/icons/icons",
+    "example/loading/loading",
+    "example/loadmore/loadmore",
+    "example/preview/preview",
+    "example/progress/progress",
+    "example/actionsheet/actionsheet",
+    "example/half-screen-dialog/half-screen-dialog",
+    "example/dialog/dialog",
+    "example/msg/msg",
+    "example/msg/msg_text",
+    "example/msg/msg_text_primary",
+    "example/msg/msg_success",
+    "example/msg/msg_fail",
+    "example/picker/picker",
+    "example/toast/toast",
+    "example/navigation-bar/navigation-bar",
+    "example/tabbar/tabbar",
+    "example/searchbar/searchbar",
+    "example/navbar/navbar",
+    "pages/shop/shop"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/order/order",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "text": "home"
+      },
+      {
+        "pagePath": "example/index",
+        "text": "历史订单"
+      }
+    ]
+  }
+}

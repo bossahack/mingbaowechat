@@ -1,0 +1,10 @@
+<view class="weui-panel weui-panel_access">
+    <view class="weui-panel__hd">商品类型</view>
+    <view class="weui-panel__bd">
+         <view class="weui-flex">
+            <view class="weui-flex__item" wx:for="{{types}}">
+              <view class="placeholder">{{item.Name}}</view>
+            </view>
+        </view>
+    </view>    
+</view>

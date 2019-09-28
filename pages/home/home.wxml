@@ -1,0 +1,82 @@
+<view class="page">
+  
+    <view class="page__bd">
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">今日订单</view>
+            <view class="weui-panel__bd">
+                <navigator url="" class="weui-media-box" hover-class="weui-cell_active">
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-flex weui-media-box__title">
+                            <view class="weui-flex__item">单号：财1</view>
+                            <view >2元</view>
+                        </view>
+                         <view class="weui-flex">
+                            <view class="weui-flex__item weui-media-box__desc">商家名</view>
+                            <view class="weui-flex__item weui-media-box__desc">住邦2000</view>
+                        </view>
+                        <view class="weui-media-box__desc">煎饼果子(1)+豆浆(1)</view>
+                    </view>
+                </navigator>
+                <navigator url="" class="weui-media-box" hover-class="weui-cell_active">
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-flex weui-media-box__title">
+                            <view class="weui-flex__item">单号：财1</view>
+                            <view >2元</view>
+                        </view>
+                         <view class="weui-flex">
+                            <view class="weui-flex__item weui-media-box__desc">商家名</view>
+                            <view class="weui-flex__item weui-media-box__desc">住邦2000</view>
+                        </view>
+                        <view class="weui-media-box__desc">煎饼果子(1)+豆浆(1)</view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+
+        
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">最近订单</view>
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_appmsg">
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-flex">
+                            <view class="weui-flex__item weui-media-box__desc">煎饼果子(1)+豆浆(1)</view>
+                            <view class="weui-media-box__desc"><button class="weui-btn mini-btn" type="default" size="mini">再来一份</button></view>
+                        </view>
+                        <view class="weui-flex">
+                            <view class="weui-flex__item weui-media-box__desc">煎饼果子(1)+豆浆(1)</view>
+                            <view class="weui-media-box__desc">
+                              <button class="weui-btn mini-btn" type="default" size="mini">再来一份</button>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd weui-flex">
+                  <view class="weui-flex__item">关注店家</view>
+                  <view ><button class="weui-btn mini-btn" type="primary" size="mini">扫码关注</button>
+              </view>
+            </view>
+            <view class="weui-panel__bd">
+                <view  class="weui-media-box " >
+                    <view class="weui-media-box__bd" hover-class="weui-cell_active">
+                        <view class="weui-flex">
+                            <view class="weui-flex__item">安徽板面</view>
+                            <view >住邦2000</view>
+                        </view>
+                    </view>
+                    <view class="weui-media-box__bd " hover-class="weui-cell_active">
+                        <view class="weui-flex">
+                            <view class="weui-flex__item">安徽板面</view>
+                            <view >住邦2000</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
