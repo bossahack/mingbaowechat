@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/order/order",
     "pages/home/home",
+    "pages/order/order",
     "pages/business/product/product",
     "example/panel/panel",
     "pages/business/setting/setting",
@@ -51,13 +51,14 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/order/order",
-        "text": "主页"
-      },
-      {
         "pagePath": "pages/home/home",
         "text": "home"
       },
+      {
+        "pagePath": "pages/shop/shop",
+        "text": "shop"
+      },
+
       {
         "pagePath": "example/index",
         "text": "历史订单"

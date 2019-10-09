@@ -4,7 +4,7 @@
         <view class="weui-panel weui-panel_access">
             <view class="weui-panel__hd">今日订单</view>
             <view class="weui-panel__bd">
-                <navigator url="" class="weui-media-box" hover-class="weui-cell_active">
+                <navigator url="/pages/order/order" class="weui-media-box" hover-class="weui-cell_active">
                     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                         <view class="weui-flex weui-media-box__title">
                             <view class="weui-flex__item">单号：财1</view>
