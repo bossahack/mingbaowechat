@@ -1,3 +1,9 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "window": {
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": true,
+    "backgroundTextStyle": "dark"
+  },
+  "navigationBarTitleText": "历史订单"
 }

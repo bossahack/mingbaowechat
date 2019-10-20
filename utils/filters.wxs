@@ -1,0 +1,29 @@
+
+module.exports = {  
+  timeFormat: function (date) {
+    return '2018-09-99';
+    var arr = date.replace('T', ' ').split(':');
+    return arr.splice(0, arr.length - 1).join(':');
+  },
+  getDetailShow:function(items){
+    var result="";
+    for(var i=0;i<items.length;i++){
+      var item=items[i];
+      if(i!=0){
+        result+="+";
+      }
+      result+=item.Name+"("+item.Qty+")";
+    }
+    return result;
+  },
+  getStatusDesc:function(status){
+    var desc="未知";
+    switch (status){
+      case 0:
+        desc="初始";
+        break;
+    }
+    return desc;
+  }
+  
+};

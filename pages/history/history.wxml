@@ -1,18 +1,19 @@
-<view class="order">
-  <view class="weui-flex item">
+<wxs module="filters" src="../../utils/filters.wxs"></wxs>
+<view class="order" wx:for="{{orders}}" wx:key="{{order.Id}}" wx:for-index="index" wx:for-item="order">
+  <view class="weui-flex item" >
     <view class="left">商家：</view>
-    <view class="weui-flex__item right">牛肉板面</view>
+    <view class="weui-flex__item right">{{order.ShopName}}</view>
   </view>
   <view class="weui-flex item">
     <view class="left">下单时间：</view>
-    <view class="weui-flex__item right">2222-09-09</view>
+    <view class="weui-flex__item right">{{filters.timeFormat(order.CreateTime)}}</view>
   </view>
   <view class="weui-flex item">
     <view class="left">商品明细：</view>
-    <view class="weui-flex__item right">xx(1) + yy(2)</view>
+    <view class="weui-flex__item right">{{filters.getDetailShow(order.Items)}}</view>
   </view>
   <view class="weui-flex item">
-    <view class="left">状态</view>
-    <view class="weui-flex__item right">完成</view>
+    <view class="left">状态：</view>
+    <view class="weui-flex__item right">{{filters.getStatusDesc(order.Status)}}</view>
   </view>
 </view>

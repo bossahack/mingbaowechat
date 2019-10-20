@@ -5,7 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    orders: [
+      {
+        Id: 1, ShopName: '牛肉板面', CreateTime: Date.now, Status: 1, Items: [
+          { Name: '面', Qty: 2 }, { Name: '面', Qty: 2 },
+        ]
+      },
+    ]
   },
 
   /**
@@ -19,7 +25,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
@@ -30,37 +36,26 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log('onPullDownRefresh');
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    console.log('onReachBottom');
+    let that=this;
+    that.data.orders.push({
+      Id: 1, ShopName: '牛肉板面', CreateTime: Date.now, Status: 1, Items: [
+        { Name: '面', Qty: 2 }, { Name: '面', Qty: 2 },
+      ]
+    });
+    that.setData({
+      orders:that.data.orders
+    });
   }
+
 })
