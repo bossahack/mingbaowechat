@@ -1,2 +1,3 @@
 .weui-panel__bd{padding-left: 40rpx;}
 .weui-panel__hd{padding:5px 16px 5px}
+.weui-panel:before{border-top:none;}

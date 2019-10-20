@@ -5,7 +5,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    typeSelectedIndex:1,
+    foodLabel:'A0',
+    arriveIndex:0,
+    carDetailShow:false,
+    shop:{
+      Id:1,
+      Name:'安徽板面',
+      Address:'住邦2000',
+      Logo:'http://pz8m2vj7z.bkt.clouddn.com/11571138257973.jpg'
+    },
+    types: [
+      { Id: 1, Name: '特色' },
+      { Id: 2, Name: '炒菜' },
+      { Id: 3, Name: '主食' },
+    ],
+    arrives: [
+      { key: 1, value: '15分钟左右取' },
+      { key: 2, value: '30分钟左右取' },
+      { key: 3, value: '一小时左右取' },
+      { key: 4, value: '2小时左右取' },
+      { key: 4, value: '4小时左右取' },
+    ],
+    foods: [
+      { Id: 1, Type: 2, Name: '米饭', Price: 122.33, Img: 'http://pz8m2vj7z.bkt.clouddn.com/11571138257973.jpg', Status: 0 },
+      { Id: 2, Type: 1, Name: '水果', Price: 222.33, Img: 'http://pz8m2vj7z.bkt.clouddn.com/11571138257973.jpg', Status: 0 },
+      { Id: 3, Type: 1, Name: '蔬菜', Price: 322.33, Img: 'http://pz8m2vj7z.bkt.clouddn.com/11571138257973.jpg', Status: 0 },
+      { Id: 4, Type: 1, Name: '蔬菜', Price: 322.33, Img: 'http://pz8m2vj7z.bkt.clouddn.com/11571138257973.jpg', Status: 0 },
+      { Id: 5, Type: 1, Name: '蔬菜', Price: 322.33, Img: 'http://pz8m2vj7z.bkt.clouddn.com/11571138257973.jpg', Status: 0 },
+      { Id: 6, Type: 1, Name: '蔬菜', Price: 322.33, Img: 'http://pz8m2vj7z.bkt.clouddn.com/11571138257973.jpg', Status: 0 },
+    ]
   },
 
   /**
@@ -29,38 +58,22 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  typeTap(e){
+    var id = e.target.dataset.typeid;
+    this.setData({
+      foodLabel:"A"+id*2
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  arriveChange(e){
+    this.setData({
+      arriveIndex: e.detail.value
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  toggleDetail(){
+    let that=this;
+    this.setData({
+      carDetailShow: !that.data.carDetailShow
+    });
   }
 })

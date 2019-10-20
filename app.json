@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/shop/shop",
     "pages/home/home",
     "pages/order/order",
     "pages/business/product/product",
@@ -38,8 +39,7 @@
     "example/navigation-bar/navigation-bar",
     "example/tabbar/tabbar",
     "example/searchbar/searchbar",
-    "example/navbar/navbar",
-    "pages/shop/shop"
+    "example/navbar/navbar"
   ],
   "window": {
     "backgroundTextStyle": "light",

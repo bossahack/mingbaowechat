@@ -1,2 +1,118 @@
-<!--pages/shop/shop.wxml-->
-<text>pages/shop/shop.wxml</text>
+<view class="page">
+  <view class="page__bd">
+
+    <view class="weui-flex"  style="background:#eee;">
+        <view>
+          <image src="{{shop.Logo}}"  style="width: 200rpx;height: 200rpx; margin:0rpx 20rpx 0 20rpx;border:1px solid #eee;border-radius:20rpx;" ></image>
+        </view>
+        <view class="weui-flex__item">
+          <view class="p">{{shop.Name}}</view>
+          <view class="p">{{shop.Address}}</view>
+        </view>
+    </view>
+
+     <view class="weui-flex main">
+       <scroll-view class="type" scroll-y="true" >
+          <view wx:for="{{types}}" wx:for-index="index" wx:for-item="type" class='item {{typeSelectedIndex==index?"selected":""}}' bindtap="typeTap" data-typeid="{{type.Id}}">
+            {{type.Name}}
+          </view>
+        </scroll-view>
+        <scroll-view class="weui-flex__item food" scroll-y="true" scroll-into-view="{{foodLabel}}" scroll-with-animation="true">
+          <view class="item" wx:for="{{foods}}" wx:for-index="index" wx:for-item="food">
+            <view class="weui-flex"> 
+              <view>
+                <image src="{{food.Img}}"  style="width: 150rpx;height: 150rpx; margin:0rpx 20rpx 0 20rpx;border:1px solid #eee;border-radius:20rpx;" ></image>
+              </view>
+              <view class="weui-flex__item" id="{{'A'+food.Id}}">
+                <view style="font-size:32rpx;">{{food.Name}}</view>
+                <view style="color:#cc6e00;">￥:{{food.Price}}</view>
+                <view class="weui-flex" style="justify-content:flex-end;align-items:center;padding-right:10rpx;">
+                    <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png"  />
+                 
+                 <text style="margin-left:10rpx;margin-right:10rpx;">2</text>
+                 
+                    <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" />
+                 
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+     </view>
+
+
+    <view class="car-details" wx-if="{{carDetailShow}}">
+      <view class="mask" bindtap="toggleDetail"></view>
+      <view class="detail-content">
+        <view class="title weui-flex">
+          <view class="weui-flex__item">已选商品</view>
+          <view class="weui-flex__item" style="text-align:right;">
+            <text bindtap="toggleDetail">关闭</text>
+          </view>
+        </view>
+        <view class="items">
+          <view class="item weui-flex">
+            <view class="left weui-flex__item">牛肉面牛肉面牛肉面牛肉面牛肉面</view>
+            <view class="center weui-flex__item">￥33</view>
+            <view class="right weui-flex__item weui-flex">
+                    <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png"  />
+                 
+                 <text style="margin-left:10rpx;margin-right:10rpx;">2</text>
+                 
+                    <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" />
+                 
+            </view>
+          </view>
+          
+          <view class="item weui-flex">
+            <view class="left weui-flex__item">牛肉面牛肉面牛肉面牛肉面牛肉面</view>
+            <view class="center weui-flex__item">￥33</view>
+            <view class="right weui-flex__item weui-flex">
+                    <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png"  />
+                 
+                 <text style="margin-left:10rpx;margin-right:10rpx;">2</text>
+                 
+                    <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" />
+                 
+            </view>
+          </view>
+
+        </view>
+        
+      <view class="weui-flex itemarrive">
+        <view class="weui-flex__item">
+          <picker model="selector" range="{{arrives}}" range-key="value" value="{{arriveIndex}}" bindchange="arriveChange" >
+          <view class="picker">
+            {{arrives[arriveIndex].value}}
+          </view>
+          </picker>
+        </view>
+        <view class="weui-flex__item">
+          <textarea placeholder="备注"></textarea>
+        </view>
+      </view>
+
+      </view>
+    </view>
+
+    <view class="weui-flex car-wrapper" >
+      <view class="weui_flex__item weui-flex car-left" bindtap="toggleDetail">
+        <view class="weui_flex__item" style="position:relative">
+          <image src="../../resources/imgs/shop_car.png" style="width:60rpx;height:60rpx;"></image>
+          <view class="icon-num">
+          8
+          </view>
+        </view>
+        <view style="margin-left:30rpx;">
+        ￥88.00
+        </view>
+      </view>
+      <view style="line-height:90rpx;" bindtap="toggleDetail">
+        {{arrives[arriveIndex].value}}
+      </view>
+      <view class="weui_flex__item car-right">
+        <view>下单</view>
+      </view>
+    </view>
+  </view>
+</view>

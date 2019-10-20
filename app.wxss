@@ -10,3 +10,21 @@
   box-sizing: border-box;
 } 
 .text-center{text-align: center;}
+.p{padding: 0rpx 10rpx 10rpx 20rpx;}
+
+.icon-num{
+  font-size: 32rpx;
+  min-width: 35rpx;
+  padding: 0 5rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background-color: #2b70ff;
+  position: absolute;
+  border-radius: 40rpx;
+  top: -16rpx;
+  right: -24rpx;
+  text-align: center;
+  color: #fff;
+}
+.icon{width: 40rpx;height: 40rpx;}
+.picker{border: 1px solid #eee;padding: 20rpx 10rpx 20rpx 10rpx;background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAWCAYAAACsR+4DAAABVElEQVRIS73WPUrEQBQH8P9LPIOdjZZ6Ay9gZyXb7AEeEwTtrKzdziJhhu0EEQQbD+AFPIbnWPJk1s0Sk83HfCSpApm8+fF/A2/IGHMlImsAIKJbZv6073M+eZ6fp2n6IiJnAJ6UUivSWv8AONlBNkS0ZOb3uWBa6wsAXwCOd3sKgNMmzH6bDXcAZff/gxljrkXkA8BRLaVNWZbLLMsmS64DZY/TipkfyGKKolgkSfI6F64H9czM99vzXqU0F24M6h9sjuTGolqwKXEuqIOwKXCuqE5YTJwPqhcWA+eLGoT14YYmRAhqFMwHF4oaDXPBxUA5wexiY8xCRFoTomprLJQzbAD3KCJ3tVvCdqgQ0X7MuNxY9iPJ5aeO5FolfFFeiVW7D+FCUEGwnrZ6t68euVcr6wWayYUmVdUOhtlCWutLADci8q2UenM5r11ro8BiQJo1fgFWg/rhCYtDggAAAABJRU5ErkJggg==') right 10rpx bottom 25rpx;background-repeat: no-repeat;background-size: 40rpx;}
