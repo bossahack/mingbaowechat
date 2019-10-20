@@ -1,0 +1,18 @@
+<view class="order">
+  <view class="weui-flex item">
+    <view class="left">商家：</view>
+    <view class="weui-flex__item right">牛肉板面</view>
+  </view>
+  <view class="weui-flex item">
+    <view class="left">下单时间：</view>
+    <view class="weui-flex__item right">2222-09-09</view>
+  </view>
+  <view class="weui-flex item">
+    <view class="left">商品明细：</view>
+    <view class="weui-flex__item right">xx(1) + yy(2)</view>
+  </view>
+  <view class="weui-flex item">
+    <view class="left">状态</view>
+    <view class="weui-flex__item right">完成</view>
+  </view>
+</view>
