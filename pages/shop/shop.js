@@ -1,10 +1,8 @@
 // pages/shop/shop.js
+const app = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
+    shopId:0,
     typeSelectedIndex:1,
     foodLabel:'A0',
     arriveIndex:0,
@@ -41,7 +39,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.data.id=options.id;
+    this.loadType();
   },
 
   /**
@@ -75,5 +74,13 @@ Page({
     this.setData({
       carDetailShow: !that.data.carDetailShow
     });
+  },
+  loadType(){
+    app.httpGet("food/GetShopTypes?id="+this.data.shopId,function(result){
+      console.log(result);
+    });
+  },
+  loadProduct(){
+
   }
 })

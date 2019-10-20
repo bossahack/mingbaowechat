@@ -1,39 +1,119 @@
 //app.js
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
+    if (!wx.getStorageSync('token'))
+      this.login();
+    
+  },
+  globalData: {
+    apiurl: 'http://192.168.124.8/',
+  },
+  login: function () {
+    var that = this;
     wx.login({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
+        if (res.code) {
+          wx.request({
+            url: that.globalData.apiurl + 'user/Login',
+            method: 'post',
+            data: {
+              code: res.code,
+            },
+            success: function (result) {
+              if (result.statusCode==200) {
+                var token = result.data.Token;
+                wx.setStorageSync('token', token);
+                wx.setStorageSync('userInfo', result.data);
+              } else {
+                wx.showToast({
+                  title: '登录失败',
+                  icon: 'none'
+                })
               }
+            },
+            fail: function (result) {
+              wx.showToast({
+                title: '服务器飞了,请稍后',
+                icon: 'none'
+              })
             }
           })
         }
+      }, fail: res => {
+        wx.showToast({
+          title: '请检查网络',
+          icon: 'none'
+        });
       }
     })
   },
-  globalData: {
-    userInfo: null
-  }
+  HttpPost: function (url, data, success) {
+    var that = this;
+    wx.showLoading({
+      title: '加载中...',
+    })
+    wx.request({
+      url: this.globalData.apiurl + url,
+      method: 'post',
+      data: data,
+      dataType: 'json',
+      header: {
+        Authorization: wx.getStorageSync('token')
+      },
+      success: function (result) {
+        wx.hideLoading();
+        that.dealResponse(result, success);
+      }, fail: function (res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '请检查网络',
+          icon: 'none'
+        });
+      }
+    })
+  },
+  httpGet: function (url, success) {
+    var that = this;
+    wx.showLoading({
+      title: '加载中...',
+    })
+    wx.request({
+      url: this.globalData.apiurl + url,
+      method: 'get',
+      dataType: 'json',
+      header: {
+        Authorization: wx.getStorageSync('token')
+      },
+      success: function (result) {
+        wx.hideLoading();
+        that.dealResponse(result, success);
+      },
+      fail: function (res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '请检查网络',
+          icon: 'none'
+        });
+      }
+    })
+  },
+  dealResponse: function (response, callback) {
+    var that = this;
+    if (response.statusCode == 403) {
+      wx.showToast({
+        title: '登陆失效，请重试',
+        icon: 'none'
+      });
+      that.login();
+      return;
+    }
+    if (response.statusCode == 500) {
+      wx.showToast({
+        title: response.data.ExceptionMessage,
+        icon: 'none'
+      })
+      return;
+    }
+    callback(response.data);
+  },
 })

@@ -63,7 +63,7 @@
             </view>
             <view class="weui-panel__bd">
                 <view  class="weui-media-box " >
-                    <view class="weui-media-box__bd" hover-class="weui-cell_active">
+                    <view class="weui-media-box__bd" hover-class="weui-cell_active" bindtap="toShop" data-id="2">
                         <view class="weui-flex">
                             <view class="weui-flex__item">安徽板面</view>
                             <view >住邦2000</view>
