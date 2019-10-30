@@ -19,7 +19,7 @@
         </scroll-view>
 
         <scroll-view class="weui-flex__item food" scroll-y="true" scroll-into-view="{{foodLabel}}" scroll-with-animation="true">
-          <view class="item" wx:for="{{foods}}" wx:for-index="index" wx:for-item="food">
+          <view class="item" wx:for="{{foods}}" wx:for-index="index" wx:for-item="food" wx:key="index">
             <view class="weui-flex"> 
               <view>
                 <image src="{{food.Img}}"  style="width: 150rpx;height: 150rpx; margin:0rpx 20rpx 0 20rpx;border:1px solid #eee;border-radius:20rpx;" ></image>
@@ -28,11 +28,11 @@
                 <view style="font-size:32rpx;">{{food.Name}}</view>
                 <view style="color:#cc6e00;">￥:{{food.Price}}</view>
                 <view class="weui-flex" style="justify-content:flex-end;align-items:center;padding-right:10rpx;">
-                    <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png" wx-if="{{getSelected}}" />
+                    <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png" wx-if="{{food.qty>0}}" bindtap="minusFood" data-id="{{food.Id}}" />
                  
-                 <text style="margin-left:10rpx;margin-right:10rpx;"  >{{selectedFoods.length}}:{{getSelectedFoods(food.Id)}}</text>
+                 <text style="margin-left:10rpx;margin-right:10rpx;"  >{{food.qty}}</text>
                  
-                    <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" bindtap="addFood" data-id="{{food.Id}}" />
+                    <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" bindtap="plusFood" data-id="{{food.Id}}" />
                  
                 </view>
                 <!-- <food-choose class="weui-flex" foodId="{{food.Id}}" selectedFoods="{{selectedFoods}}"  ></food-choose> -->
@@ -53,32 +53,16 @@
           </view>
         </view>
         <view class="items">
-          <view class="item weui-flex">
-            <view class="left weui-flex__item">牛肉面牛肉面牛肉面牛肉面牛肉面</view>
-            <view class="center weui-flex__item">￥33</view>
+          <view class="item weui-flex" wx:for="{{selectedFoods}}" wx:for-index="index" wx:for-item="food" wx:key="index">
+            <view class="left weui-flex__item">{{food.name}}</view>
+            <view class="center weui-flex__item">￥{{food.price}}</view>
             <view class="right weui-flex__item weui-flex">
-                    <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png"  />
-                 
-                 <text style="margin-left:10rpx;margin-right:10rpx;">2</text>
-                 
-                    <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" />
-                 
+              <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png"  bindtap="minusFood" data-id="{{food.id}}" />
+              <text style="margin-left:10rpx;margin-right:10rpx;">{{food.qty}}</text>
+              <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" bindtap="plusFood" data-id="{{food.id}}" />
             </view>
           </view>
           
-          <view class="item weui-flex">
-            <view class="left weui-flex__item">牛肉面牛肉面牛肉面牛肉面牛肉面</view>
-            <view class="center weui-flex__item">￥33</view>
-            <view class="right weui-flex__item weui-flex">
-                    <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png"  />
-                 
-                 <text style="margin-left:10rpx;margin-right:10rpx;">2</text>
-                 
-                    <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" />
-                 
-            </view>
-          </view>
-
         </view>
         
       <view class="weui-flex itemarrive">
@@ -102,11 +86,11 @@
         <view class="weui_flex__item" style="position:relative">
           <image src="../../resources/imgs/shop_car.png" style="width:60rpx;height:60rpx;"></image>
           <view class="icon-num">
-          8
+          {{selectedFoods.length}}
           </view>
         </view>
         <view style="margin-left:30rpx;">
-        ￥88.00
+        ￥
         </view>
       </view>
       <view style="line-height:90rpx;" bindtap="toggleDetail">

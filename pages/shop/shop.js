@@ -1,7 +1,7 @@
 // pages/shop/shop.js
 const computedBehavior = require('miniprogram-computed')
 const app = getApp();
-Page({
+Component({
   behaviors: [computedBehavior],
   data: {
     shopId:2,
@@ -27,17 +27,21 @@ Page({
     foods: [
     ],
     selectedFoods:[
-      {id:1,qty:2}
     ],
   },
   computed:{
     getSelectedFoods(data) {
-      return 2;
-      var item = data.selectedFoods.find(c => c.id == foodId);
-      return data.selectedFoods.find(c => c.id == foodId);
+      var items= data.foods.filter(c => c.Id>0);
+      console.log(items);
+      return items;
     }
   },
-
+  // watch:{
+  //   'selectedFoods':function(selectedFoods){
+  //     console.log(selectedFoods);
+  //   }
+  // },
+methods:{
   /**
    * 生命周期函数--监听页面加载
    */
@@ -124,16 +128,41 @@ Page({
       });
     }
   },
-  addFood(e){
+  plusFood(e){
     var foodid = e.currentTarget.dataset.id;
+    //改变foods
+    var food = this.data.foods.find(c => c.Id == foodid);
+    if (food.qty === undefined) {
+      food.qty = 1;
+    } else {
+      food.qty += 1;
+    }
+
     var item=this.data.selectedFoods.find(c=>c.id==foodid);
     if(item==null){
-      this.data.selectedFoods.push({id:foodid,qty:1});
+      this.data.selectedFoods.push({ id: foodid, qty: 1, name: food.Name, price: food.Price});
     }else{
       item.qty+=1;
     }
     this.setData({
-      selectedFoods:this.data.selectedFoods
+      selectedFoods:this.data.selectedFoods,
+      foods:this.data.foods
+    });
+  },
+  minusFood(e) {
+    var foodid = e.currentTarget.dataset.id;
+    var item = this.data.selectedFoods.find(c => c.id == foodid);
+    item.qty -= 1;
+    if(item.qty===0){
+      this.data.selectedFoods.splice(this.data.selectedFoods.indexOf(item),1);
+    }
+    //改变foods
+    var food = this.data.foods.find(c => c.Id == foodid);
+    food.qty -= 1;
+    this.setData({
+      selectedFoods: this.data.selectedFoods,
+      foods: this.data.foods
     });
   }
+}
 })
