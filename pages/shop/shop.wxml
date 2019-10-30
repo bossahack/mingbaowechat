@@ -74,7 +74,7 @@
           </picker>
         </view>
         <view class="weui-flex__item">
-          <textarea placeholder="备注"></textarea>
+          <textarea placeholder="备注" maxlength="50" bindinput="inputNote"></textarea>
         </view>
       </view>
 
@@ -90,14 +90,14 @@
           </view>
         </view>
         <view style="margin-left:30rpx;">
-        ￥
+        ￥{{totalPrice}}
         </view>
       </view>
       <view style="line-height:90rpx;" bindtap="toggleDetail">
         {{arrives[arriveIndex].value}}
       </view>
       <view class="weui_flex__item car-right">
-        <view>下单</view>
+        <view bindtap="ok">下单</view>
       </view>
     </view>
   </view>

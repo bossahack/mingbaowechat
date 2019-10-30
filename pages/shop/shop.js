@@ -8,6 +8,7 @@ Component({
     typeSelectedIndex:1,
     foodLabel:'A0',
     arriveIndex:0,
+    note:'',
     carDetailShow:false,
     shop:{
       Id:1,
@@ -30,8 +31,8 @@ Component({
     ],
   },
   computed:{
-    getSelectedFoods(data) {
-      var items= data.foods.filter(c => c.Id>0);
+    totalPrice(data) {
+      var items= data.selectedFoods.length;//.filter(c => c.Id>0);
       console.log(items);
       return items;
     }
@@ -162,6 +163,25 @@ methods:{
     this.setData({
       selectedFoods: this.data.selectedFoods,
       foods: this.data.foods
+    });
+  },
+  inputNote(e){
+    this.setData({note:e.detail.value});
+  },
+  ok(){
+    let that=this;
+    if(that.data.selectedFoods==null||that.data.selectedFoods.length<=0){
+      return;
+    }
+    var bParam = { ShopId: that.data.shopId, ArriveTimeType: that.data.arrives[that.data.arriveIndex].key, Note: that.data.note, Items: []};
+    that.data.selectedFoods.forEach((item,index)=>{
+      bParam.Items.push({FoodId:item.id,Qty:item.qty});
+    });
+    app.HttpPost("userorder/BookOrder",bParam,function(){
+      wx.showToast({
+        title: '下单成功',
+        icon: 'success'
+      });
     });
   }
 }
