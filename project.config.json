@@ -18,10 +18,11 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"nodeModules": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.8.0",
+	"libVersion": "2.9.0",
 	"appid": "wxa150f7c54d135f0b",
 	"projectname": "book",
 	"debugOptions": {

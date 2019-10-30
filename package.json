@@ -1,0 +1,26 @@
+{
+  "name": "mingbao",
+  "version": "1.0.0",
+  "description": "mingbaodesc",
+  "main": "app.js",
+  "dependencies": {
+    "miniprogram-computed": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bossahack/mingbaowechat.git"
+  },
+  "keywords": [
+    "mingbao"
+  ],
+  "author": "licun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bossahack/mingbaowechat/issues"
+  },
+  "homepage": "https://github.com/bossahack/mingbaowechat#readme"
+}

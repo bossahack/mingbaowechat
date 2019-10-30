@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/shop/shop",
     "pages/home/home",
     "pages/history/history",
-    "pages/shop/shop",
     "pages/order/order"
   ],
   "window": {
@@ -21,6 +21,10 @@
       },
       {
         "pagePath": "pages/history/history",
+        "text": "历史订单"
+      },
+      {
+        "pagePath": "pages/shop/shop",
         "text": "历史订单"
       }
     ]

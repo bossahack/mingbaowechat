@@ -1,38 +1,41 @@
 // pages/shop/shop.js
+const computedBehavior = require('miniprogram-computed')
 const app = getApp();
 Page({
+  behaviors: [computedBehavior],
   data: {
-    shopId:0,
+    shopId:2,
     typeSelectedIndex:1,
     foodLabel:'A0',
     arriveIndex:0,
     carDetailShow:false,
     shop:{
       Id:1,
-      Name:'安徽板面',
-      Address:'住邦2000',
-      Logo:'http://pz8m2vj7z.bkt.clouddn.com/11571138257973.jpg'
+      Name:'',
+      Address:'',
+      Logo:''
     },
     types: [
-      { Id: 1, Name: '特色' },
-      { Id: 2, Name: '炒菜' },
-      { Id: 3, Name: '主食' },
     ],
     arrives: [
-      { key: 1, value: '15分钟左右取' },
-      { key: 2, value: '30分钟左右取' },
-      { key: 3, value: '一小时左右取' },
-      { key: 4, value: '2小时左右取' },
-      { key: 4, value: '4小时左右取' },
+      { key: 15, value: '15分钟左右取' },
+      { key: 30, value: '30分钟左右取' },
+      { key: 60, value: '一小时左右取' },
+      { key: 120, value: '2小时左右取' },
+      { key: 240, value: '4小时左右取' },
     ],
     foods: [
-      { Id: 1, Type: 2, Name: '米饭', Price: 122.33, Img: 'http://pz8m2vj7z.bkt.clouddn.com/11571138257973.jpg', Status: 0 },
-      { Id: 2, Type: 1, Name: '水果', Price: 222.33, Img: 'http://pz8m2vj7z.bkt.clouddn.com/11571138257973.jpg', Status: 0 },
-      { Id: 3, Type: 1, Name: '蔬菜', Price: 322.33, Img: 'http://pz8m2vj7z.bkt.clouddn.com/11571138257973.jpg', Status: 0 },
-      { Id: 4, Type: 1, Name: '蔬菜', Price: 322.33, Img: 'http://pz8m2vj7z.bkt.clouddn.com/11571138257973.jpg', Status: 0 },
-      { Id: 5, Type: 1, Name: '蔬菜', Price: 322.33, Img: 'http://pz8m2vj7z.bkt.clouddn.com/11571138257973.jpg', Status: 0 },
-      { Id: 6, Type: 1, Name: '蔬菜', Price: 322.33, Img: 'http://pz8m2vj7z.bkt.clouddn.com/11571138257973.jpg', Status: 0 },
-    ]
+    ],
+    selectedFoods:[
+      {id:1,qty:2}
+    ],
+  },
+  computed:{
+    getSelectedFoods(data) {
+      return 2;
+      var item = data.selectedFoods.find(c => c.id == foodId);
+      return data.selectedFoods.find(c => c.id == foodId);
+    }
   },
 
   /**
@@ -41,6 +44,8 @@ Page({
   onLoad: function (options) {
     this.data.id=options.id;
     this.loadType();
+    this.loadProduct();
+    this.loadShop();
   },
 
   /**
@@ -76,11 +81,59 @@ Page({
     });
   },
   loadType(){
-    app.httpGet("food/GetShopTypes?id="+this.data.shopId,function(result){
-      console.log(result);
+    let that=this;
+    app.httpGet("food/GetTypes_U?id=" + this.data.shopId, function (result) {
+      result.sort(function (x, y) {return x.Level - y.Level });
+      that.setData({
+        types:result
+      });
+      that.sortProduct()
     });
   },
   loadProduct(){
-
+    let that = this;
+    app.httpGet("food/GetList_U?shopid=" + this.data.shopId, function (result) {
+      that.setData({
+        foods: result
+      });
+      that.sortProduct()
+    });
+  },
+  loadShop(){
+    let that = this;
+    app.httpGet("shop/GetInfo_U?id=" + this.data.shopId, function (result) {
+      that.setData({
+        shop: result
+      });
+    });
+  },
+  sortProduct(){
+    let that=this;
+    if (that.data.types != null && that.data.types.length>0
+      && that.data.foods != null && that.data.foods.length>0){
+      that.data.foods.sort(function(x,y){
+        if(x.Type==y.Type){
+          return x.Level-y.Level;
+        }
+        var xLevel = that.data.types.find(c=>c.Id==x.Type);
+        var yLevel = that.data.types.find(c => c.Id == y.Type);
+        return xLevel.Level - yLevel.Level;
+      });
+      that.setData({
+        foods:that.data.foods
+      });
+    }
+  },
+  addFood(e){
+    var foodid = e.currentTarget.dataset.id;
+    var item=this.data.selectedFoods.find(c=>c.id==foodid);
+    if(item==null){
+      this.data.selectedFoods.push({id:foodid,qty:1});
+    }else{
+      item.qty+=1;
+    }
+    this.setData({
+      selectedFoods:this.data.selectedFoods
+    });
   }
 })

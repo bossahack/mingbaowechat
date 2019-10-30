@@ -17,6 +17,7 @@
             {{type.Name}}
           </view>
         </scroll-view>
+
         <scroll-view class="weui-flex__item food" scroll-y="true" scroll-into-view="{{foodLabel}}" scroll-with-animation="true">
           <view class="item" wx:for="{{foods}}" wx:for-index="index" wx:for-item="food">
             <view class="weui-flex"> 
@@ -27,13 +28,14 @@
                 <view style="font-size:32rpx;">{{food.Name}}</view>
                 <view style="color:#cc6e00;">￥:{{food.Price}}</view>
                 <view class="weui-flex" style="justify-content:flex-end;align-items:center;padding-right:10rpx;">
-                    <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png"  />
+                    <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png" wx-if="{{getSelected}}" />
                  
-                 <text style="margin-left:10rpx;margin-right:10rpx;">2</text>
+                 <text style="margin-left:10rpx;margin-right:10rpx;"  >{{selectedFoods.length}}:{{getSelectedFoods(food.Id)}}</text>
                  
-                    <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" />
+                    <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" bindtap="addFood" data-id="{{food.Id}}" />
                  
                 </view>
+                <!-- <food-choose class="weui-flex" foodId="{{food.Id}}" selectedFoods="{{selectedFoods}}"  ></food-choose> -->
               </view>
             </view>
           </view>
