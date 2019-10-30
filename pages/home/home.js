@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    orders:[]
   },
 
   /**
@@ -31,8 +31,11 @@ Page({
   },
 
   loadTodayOrder(){
+    let that=this;
     app.httpGet("UserOrder/GetOrderToday",function(result){
-      console.log(result);
+      that.setData({
+        orders:result
+      });
     });
   },
   toShop: function (e) {
