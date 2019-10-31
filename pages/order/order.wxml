@@ -5,16 +5,16 @@
           <view class="weui-panel__bd">
             <view class="weui-flex">
                 <view >店名：</view>
-                <view class="weui-flex__item">安徽板面</view>
+                <view class="weui-flex__item">{{order.Shops[0].Name}}</view>
             </view>
             <view class="weui-flex">
                 <view >地址：</view>
-                <view class="weui-flex__item">安徽板面</view>
+                <view class="weui-flex__item">{{order.Shops[0].Address}}</view>
             </view>
-            <view class="weui-flex">
+            <!-- <view class="weui-flex">
                 <view >电话：</view>
-                <view class="weui-flex__item">安徽板面</view>
-            </view>
+                <view class="weui-flex__item">{{order.Shops[0].Tel}}</view>
+            </view> -->
           </view>
       </view>
 
@@ -27,17 +27,19 @@
             </view>
             <view class="weui-flex">
                 <view >取号码：</view>
-                <view class="weui-flex__item">安徽板面</view>
+                <view class="weui-flex__item">{{order.Orders[0].TakeCode}}</view>
             </view>
             <view class="weui-flex">
                 <view >到店时间：</view>
-                <view class="weui-flex__item">安徽板面</view>
+                <view class="weui-flex__item">{{order.Orders[0].ArriveTimeType}}</view>
+            </view>
+            <view class="weui-flex">
                 <view >下单时间：</view>
-                <view class="weui-flex__item">安徽板面</view>
+                <view class="weui-flex__item">{{order.Orders[0].CreateDate}}</view>
             </view>
             <view class="weui-flex">
                 <view >状态：</view>
-                <view class="weui-flex__item">未接单</view>
+                <view class="weui-flex__item">{{order.Orders[0].Status}}</view>
             </view>
           </view>
       </view>
@@ -46,13 +48,9 @@
       <view class="weui-panel weui-panel_access">
           <view class="weui-panel__hd">商品信息</view>
           <view class="weui-panel__bd">
-            <view class="weui-flex">
-                <view class="weui-flex__item">韭菜鸡蛋 ￥3元</view>
-                <view class="paddingright" >1份</view>
-            </view>
-            <view class="weui-flex">
-                <view class="weui-flex__item">韭菜鸡蛋 ￥3元</view>
-                <view class="paddingright" >1份</view>
+            <view class="weui-flex" wx:for="{{order.OrderItems}}" wx:for-index="index" wx:for-item="item" wx:key="index" >
+                <view class="weui-flex__item">{{item.FoodName}} ￥{{item.FoodPrice}}</view>
+                <view class="paddingright" >{{item.Qty}}份</view>
             </view>
           </view>
       </view>

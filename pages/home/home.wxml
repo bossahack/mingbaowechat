@@ -4,7 +4,7 @@
         <view class="weui-panel weui-panel_access">
             <view class="weui-panel__hd">今日订单</view>
             <view class="weui-panel__bd">
-                <navigator url="/pages/order/order" class="weui-media-box" hover-class="weui-cell_active"  wx:for="{{orders}}" wx:for-index="index" wx:for-item="order" wx:key="index">
+                <navigator url="/pages/order/order?id={{order.Id}}" class="weui-media-box" hover-class="weui-cell_active"  wx:for="{{orders}}" wx:for-index="index" wx:for-item="order" wx:key="index" >
                     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                         <view class="weui-flex weui-media-box__title">
                             <view class="weui-flex__item">单号：{{order.TakeCode}}</view>
@@ -63,16 +63,10 @@
             </view>
             <view class="weui-panel__bd">
                 <view  class="weui-media-box " >
-                    <view class="weui-media-box__bd" hover-class="weui-cell_active" bindtap="toShop" data-id="2">
+                    <view class="weui-media-box__bd" hover-class="weui-cell_active" bindtap="toShop" data-id="{{shop.Id}}" wx:for="{{shops}}" wx:for-index="index" wx:for-item="shop" wx:key="index">
                         <view class="weui-flex">
-                            <view class="weui-flex__item">安徽板面</view>
-                            <view >住邦2000</view>
-                        </view>
-                    </view>
-                    <view class="weui-media-box__bd " hover-class="weui-cell_active">
-                        <view class="weui-flex">
-                            <view class="weui-flex__item">安徽板面</view>
-                            <view >住邦2000</view>
+                            <view class="weui-flex__item">{{shop.Name}}</view>
+                            <view >{{shop.Address}}</view>
                         </view>
                     </view>
                 </view>

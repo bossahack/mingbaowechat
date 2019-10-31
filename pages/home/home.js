@@ -21,6 +21,7 @@ Page({
    */
   onReady: function () {
     this.loadTodayOrder();
+    this.loadShops();
   },
 
   /**
@@ -36,6 +37,7 @@ Page({
       if (result == null || result.Orders == null || result.Orders.length==0){
         return;
       }
+      console.log(result);
       that.data.orders.length=0;
       result.Orders.forEach((order, index) => {
         let shop = result.Shops.find(c => c.Id == order.ShopId);
@@ -43,7 +45,7 @@ Page({
         order.shopAddress=shop.Address;
         let items = result.OrderItems.filter(c=>c.OrderId==order.Id);
         order.foodNameShow=items.reduce((a,b)=>{return a.FoodName+"(￥"+a.FoodPrice+")  ";});
-        order.totalPrice=items.reduce((a,b)=>{return a.FoodPrice+b.FoodPrice;});
+        order.totalPrice=items.reduce((a,b)=>{return a.FoodPrice*a.Qty+b.FoodPrice*b.Qty;});
         that.data.orders.push(order);
       });
 
@@ -59,5 +61,15 @@ Page({
       url: '../shop/shop?id=' + id
     })
   },
-
+  loadShops(){
+    let that=this;
+    app.httpGet("shop/GetUserShops", function (result) {
+      if (result == null ||result.length == 0) {
+        return;
+      }
+      that.setData({
+        shops:result
+      });
+    });
+  }
 })

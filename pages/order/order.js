@@ -1,10 +1,12 @@
 // pages/order/order.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    orderId:null,
 
   },
 
@@ -12,7 +14,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.data.orderId = options.id;
+    this.loadDetail(this.data.orderId);
   },
 
   /**
@@ -42,25 +45,15 @@ Page({
   onUnload: function () {
 
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  loadDetail(id){
+    let that = this;
+    app.httpGet("UserOrder/GetOrderDetail?id="+id, function (result) {
+      if (result == null || result.Orders == null || result.Orders.length == 0) {
+        return;
+      }
+      that.setData({
+        order: result
+      });
+    });
   }
 })
