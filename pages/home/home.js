@@ -33,8 +33,22 @@ Page({
   loadTodayOrder(){
     let that=this;
     app.httpGet("UserOrder/GetOrderToday",function(result){
+      if (result == null || result.Orders == null || result.Orders.length==0){
+        return;
+      }
+      that.data.orders.length=0;
+      result.Orders.forEach((order, index) => {
+        let shop = result.Shops.find(c => c.Id == order.ShopId);
+        order.shopName=shop.Name;
+        order.shopAddress=shop.Address;
+        let items = result.OrderItems.filter(c=>c.OrderId==order.Id);
+        order.foodNameShow=items.reduce((a,b)=>{return a.FoodName+"(￥"+a.FoodPrice+")  ";});
+        order.totalPrice=items.reduce((a,b)=>{return a.FoodPrice+b.FoodPrice;});
+        that.data.orders.push(order);
+      });
+
       that.setData({
-        orders:result
+        orders: that.data.orders
       });
     });
   },
