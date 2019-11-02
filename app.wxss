@@ -12,7 +12,7 @@
 .text-center{text-align: center;}
 .text-right{text-align: right;}
 .p{padding: 0rpx 10rpx 10rpx 20rpx;}
-
+.red{color: #f75e5e;}
 .icon-num{
   font-size: 32rpx;
   min-width: 35rpx;

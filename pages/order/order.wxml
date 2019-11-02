@@ -31,7 +31,7 @@
             </view>
             <view class="weui-flex">
                 <view >到店时间：</view>
-                <view class="weui-flex__item">{{order.Orders[0].ArriveTimeType}}</view>
+                <view class="weui-flex__item">{{order.Orders[0].arriveName}}</view>
             </view>
             <view class="weui-flex">
                 <view >下单时间：</view>
@@ -39,7 +39,7 @@
             </view>
             <view class="weui-flex">
                 <view >状态：</view>
-                <view class="weui-flex__item">{{order.Orders[0].Status}}</view>
+                <view class="weui-flex__item">{{order.Orders[0].statusName}}</view>
             </view>
           </view>
       </view>
@@ -56,11 +56,11 @@
       </view>
 
       <view class="weui-flex">
-          <view class="weui-flex__item text-center">
-            <button class="weui-btn mini-btn" type="primary" size="mini">取消订单</button>
+          <view class="weui-flex__item text-center" wx-if="{{order.Orders[0].Status==0}}">
+            <button class="weui-btn mini-btn" type="primary" size="mini" bindtap="cancelOrder">取消订单</button>
           </view>
           <view class="weui-flex__item text-center">
-            <button class="weui-btn mini-btn" type="primary" size="mini">按钮</button>
+            <button class="weui-btn mini-btn" type="primary" size="mini" bindtap="copyOrder">再来一份</button>
           </view>
       </view>
   </view>

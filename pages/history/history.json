@@ -5,5 +5,5 @@
     "onReachBottomDistance": true,
     "backgroundTextStyle": "dark"
   },
-  "navigationBarTitleText": "历史订单"
+	"navigationBarTitleText": "不排队-历史订单"
 }

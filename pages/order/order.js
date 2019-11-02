@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderId:null,
+    orderId: null,
+    arrives: app.globalData.arrives,
 
   },
 
@@ -51,9 +52,36 @@ Page({
       if (result == null || result.Orders == null || result.Orders.length == 0) {
         return;
       }
+      result.Orders[0].arriveName = app.globalData.arrives.find(c => c.key == result.Orders[0].ArriveTimeType).value;
+      result.Orders[0].statusName = app.globalData.orderStatus.find(c => c.key == result.Orders[0].Status).value;
       that.setData({
         order: result
       });
     });
+  },
+  cancelOrder(){
+    let that=this;
+    app.httpPost("userorder/Cancel?orderId=" + that.data.orderId,null,function(result){
+      wx.showToast({
+        title: '取消成功',
+        icon: 'success'
+      });
+      that.data.order.Orders[0].Status = 30;
+      that.data.order.Orders[0].statusName = app.globalData.orderStatus.find(c => c.key == 30).value;
+      that.setData({
+        order: that.data.order
+      })
+    });
+  },
+  copyOrder(){
+    var that = this;
+    app.httpPost("userorder/CopyBookOrder?orderId=" + that.data.orderId, null, function (result) {
+      wx.showToast({
+        title: '下单成功',
+        icon: 'success'
+      });
+      that.loadTodayOrder();
+    });
   }
+
 })

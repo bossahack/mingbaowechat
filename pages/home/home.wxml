@@ -8,7 +8,8 @@
                     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                         <view class="weui-flex weui-media-box__title">
                             <view class="weui-flex__item">单号：{{order.TakeCode}}</view>
-                            <view >￥{{order.totalPrice}}</view>
+                            <view wx-if="{{order.Status!=30}}" >￥{{order.totalPrice}}</view>
+                            <view wx-if="{{order.Status==30}}" class="red" >已取消</view>
                         </view>
                          <view class="weui-flex">
                             <view class="weui-flex__item weui-media-box__desc">{{order.shopName}}</view>
@@ -30,11 +31,11 @@
                 <view class="weui-media-box weui-media-box_appmsg">
                     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                         <view class="weui-flex" wx:for="{{lastedOrders}}" wx:for-index="index" wx:for-item="order" wx:key="index" >
-                            <view class="weui-flex__item weui-media-box__desc">{{order.foodNameShow}}</view>
+                            <navigator url="/pages/order/order?id={{order.id}}" class="weui-flex__item weui-media-box__desc">{{order.foodNameShow}}</navigator>
                             <view class="weui-media-box__desc"><button class="weui-btn mini-btn" type="default" size="mini" bindtap="copyOrder" data-id="{{order.id}}" >再来一份</button></view>
                         </view>
                         <view wx-if="{{lastedOrders.length==0}}" class="nodata">
-                          木有唉，关注店家快快下单吧
+                          木有唉
                         </view>
                     </view>
                 </view>
@@ -58,7 +59,7 @@
                     </view>
                     
                     <view wx-if="{{shops==null||shops.length==0}}" class="nodata">
-                      木有唉，进店扫码，提前下单，到店拿
+                      木有唉
                     </view>
                 </view>
             </view>

@@ -16,14 +16,8 @@ Component({
       Address:'',
       Logo:''
     },
+    arrives:app.globalData.arrives,
     types: [
-    ],
-    arrives: [
-      { key: 15, value: '15分钟左右取' },
-      { key: 30, value: '30分钟左右取' },
-      { key: 60, value: '一小时左右取' },
-      { key: 120, value: '2小时左右取' },
-      { key: 240, value: '4小时左右取' },
     ],
     foods: [
     ],

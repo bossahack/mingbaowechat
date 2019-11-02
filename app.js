@@ -7,6 +7,20 @@ App({
   },
   globalData: {
     apiurl: 'http://192.168.124.13/',
+    arrives: [
+      { key: 15, value: '15分钟左右取' },
+      { key: 30, value: '30分钟左右取' },
+      { key: 60, value: '一小时左右取' },
+      { key: 120, value: '2小时左右取' },
+      { key: 240, value: '4小时左右取' },
+    ],
+    orderStatus: [
+      { key: 0, value: '初始' },
+      { key: 10, value: '已接单' },
+      { key: 20, value: '已完成' },
+      { key: 30, value: '已取消' },
+      { key: 40, value: '异常单' },
+    ]
   },
   login: function () {
     var that = this;

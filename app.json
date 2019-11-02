@@ -8,7 +8,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "不排队",
     "navigationBarTextStyle": "black",
     "onReachBottomDistance": 5
   },
@@ -17,7 +17,8 @@
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "主页"
+        "text": "主页",
+        "navigationBarTitleText": "主页"
       },
       {
         "pagePath": "pages/history/history",
