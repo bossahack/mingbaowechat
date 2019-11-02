@@ -2,11 +2,11 @@
 <view class="order" wx:for="{{orders}}" wx:key="{{order.Id}}" wx:for-index="index" wx:for-item="order">
   <view class="weui-flex item" >
     <view class="left">商家：</view>
-    <view class="weui-flex__item right">{{order.ShopName}}</view>
+    <view class="weui-flex__item right">{{order.shopName}}</view>
   </view>
   <view class="weui-flex item">
     <view class="left">下单时间：</view>
-    <view class="weui-flex__item right">{{filters.timeFormat(order.CreateTime)}}</view>
+    <view class="weui-flex__item right">{{filters.timeFormat(order.createTime)}}</view>
   </view>
   <view class="weui-flex item">
     <view class="left">商品明细：</view>
@@ -14,6 +14,9 @@
   </view>
   <view class="weui-flex item">
     <view class="left">状态：</view>
-    <view class="weui-flex__item right">{{filters.getStatusDesc(order.Status)}}</view>
+    <view class="weui-flex__item right">{{filters.getStatusDesc(order.status)}}</view>
   </view>
 </view>
+  <view wx-if="{{noMore}}" class="text-center">
+    ---到底了---
+  </view>

@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/history/history",
     "pages/home/home",
     "pages/shop/shop",
-    "pages/history/history",
     "pages/order/order"
   ],
   "window": {
@@ -10,7 +10,8 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "不排队",
     "navigationBarTextStyle": "black",
-    "onReachBottomDistance": 5
+    "onReachBottomDistance": 5,
+    "enablePullDownRefresh": true
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {

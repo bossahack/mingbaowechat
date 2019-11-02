@@ -1,7 +1,8 @@
 
 module.exports = {  
   timeFormat: function (date) {
-    return '2018-09-99';
+    if(!date)
+      return;
     var arr = date.replace('T', ' ').split(':');
     return arr.splice(0, arr.length - 1).join(':');
   },
@@ -12,15 +13,27 @@ module.exports = {
       if(i!=0){
         result+="+";
       }
-      result+=item.Name+"("+item.Qty+")";
+      result += item.FoodName+"("+item.Qty+")";
     }
     return result;
   },
   getStatusDesc:function(status){
     var desc="未知";
-    switch (status){
+    switch (status) {
       case 0:
-        desc="初始";
+        desc = "初始";
+        break;
+      case 10:
+        desc = "已接单";
+        break;
+      case 20:
+        desc = "已完成";
+        break;
+      case 30:
+        desc = "已取消";
+        break;
+      case 40:
+        desc = "异常单";
         break;
     }
     return desc;
