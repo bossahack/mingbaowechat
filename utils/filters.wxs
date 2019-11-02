@@ -79,5 +79,15 @@ module.exports = {
         break;
     }
     return desc;
+  }, 
+  getSelectedTotalPrice: function (items) {
+    if (!items)
+      return 0;
+    var result = 0;
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      result += item.qty * item.price;
+    }
+    return result;
   }
 };
