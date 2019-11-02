@@ -1,5 +1,6 @@
 // pages/home/home.js
 const app = getApp();
+const qrCodePath ="pages/love?scene=id";
 Page({
 
   /**
@@ -14,7 +15,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if(options!=null&options.scene!=null){
+      if(options.scene.startsWith("id")){
+        scene = decodeURIComponent(options.scene);
+        var id = scene.replace("id", "");
+        collectShop(id);
+      }
+    }
   },
 
   /**
@@ -100,6 +107,32 @@ Page({
         icon: 'success'
       });
      that.loadTodayOrder();
+    });
+  },
+  scancode(){
+    let that=this;
+    wx.scanCode({
+      success(res) {
+        console.log(res.path);
+        if (res.path.startsWith(qrCodePath)){
+          var id=res.path.replace(str,"");
+          collectShop(id);
+        }
+      },
+      fail(err) {
+        console.log(err)
+      }, 
+      complete() {
+      }
+    });
+  },
+  collectShop(id){
+    app.httpPost("shop/CollectShop?shopid=" + id, null, function (result) {
+      that.loadShops();
+      wx.showToast({
+        title: '关注成功',
+        icon: 'success'
+      });
     });
   }
 })
