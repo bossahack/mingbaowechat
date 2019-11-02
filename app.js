@@ -6,7 +6,7 @@ App({
     
   },
   globalData: {
-    apiurl: 'http://192.168.124.8/',
+    apiurl: 'http://192.168.124.13/',
   },
   login: function () {
     var that = this;
@@ -47,7 +47,7 @@ App({
       }
     })
   },
-  HttpPost: function (url, data, success) {
+  httpPost: function (url, data, success) {
     var that = this;
     wx.showLoading({
       title: '加载中...',

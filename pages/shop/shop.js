@@ -177,7 +177,7 @@ methods:{
     that.data.selectedFoods.forEach((item,index)=>{
       bParam.Items.push({FoodId:item.id,Qty:item.qty});
     });
-    app.HttpPost("userorder/BookOrder",bParam,function(){
+    app.httpPost("userorder/BookOrder",bParam,function(){
       wx.showToast({
         title: '下单成功',
         icon: 'success'

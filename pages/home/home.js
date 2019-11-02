@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orders:[]
+    orders: [],
+    lastedOrders: []
   },
 
   /**
@@ -21,6 +22,7 @@ Page({
    */
   onReady: function () {
     this.loadTodayOrder();
+    this.loadLastedOrder();
     this.loadShops();
   },
 
@@ -44,13 +46,50 @@ Page({
         order.shopName=shop.Name;
         order.shopAddress=shop.Address;
         let items = result.OrderItems.filter(c=>c.OrderId==order.Id);
-        order.foodNameShow=items.reduce((a,b)=>{return a.FoodName+"(￥"+a.FoodPrice+")  ";});
-        order.totalPrice=items.reduce((a,b)=>{return a.FoodPrice*a.Qty+b.FoodPrice*b.Qty;});
+        if(items.length==1){
+          let tmp = items[0];
+          order.foodNameShow = tmp.FoodName + "(￥" + tmp.FoodPrice + ")";
+          order.totalPrice = tmp.FoodPrice * tmp.Qty;
+        }else{
+          order.foodNameShow = items.reduce((a, b) => 
+            a.FoodName + "(￥" + a.FoodPrice + ")  "+
+          b.FoodName + "(￥" + b.FoodPrice + ")  "
+          );
+          order.totalPrice = items.reduce((a, b) => a.FoodPrice * a.Qty + b.FoodPrice * b.Qty);
+        }
         that.data.orders.push(order);
       });
 
       that.setData({
         orders: that.data.orders
+      });
+    });
+  },
+  loadLastedOrder(){
+    let that = this;
+    app.httpGet("UserOrder/GetLastedOrders", function (result) {
+      if (result == null || result.Orders == null || result.Orders.length == 0) {
+        return;
+      }
+      that.data.lastedOrders.length = 0;
+      result.Orders.forEach((order, index) => {
+        var orderNew={};
+        orderNew.id=order.Id;        
+        let items = result.OrderItems.filter(c => c.OrderId == order.Id);
+        if (items.length == 1) {
+          let tmp = items[0];
+          orderNew.foodNameShow = tmp.FoodName + "(￥" + tmp.FoodPrice + ")";
+        } else {
+          orderNew.foodNameShow = items.reduce((a, b) =>
+            a.FoodName + "(￥" + a.FoodPrice + ")  " +
+            b.FoodName + "(￥" + b.FoodPrice + ")  "
+          );
+        }
+        that.data.lastedOrders.push(orderNew);
+      });
+
+      that.setData({
+        lastedOrders: that.data.lastedOrders
       });
     });
   },
@@ -70,6 +109,17 @@ Page({
       that.setData({
         shops:result
       });
+    });
+  },
+  copyOrder(e){
+    var that = this;
+    var id = e.currentTarget.dataset.id;
+    app.httpPost("UserOrder/CopyBookOrder?orderId="+id, null,function (result) {
+      wx.showToast({
+        title: '下单成功',
+        icon: 'success'
+      });
+     that.loadTodayOrder();
     });
   }
 })

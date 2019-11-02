@@ -12,24 +12,14 @@
                         </view>
                          <view class="weui-flex">
                             <view class="weui-flex__item weui-media-box__desc">{{order.shopName}}</view>
-                            <view class="weui-flex__item weui-media-box__desc">{{order.shopAddress}}</view>
+                            <view class="weui-flex__item weui-media-box__desc text-right">{{order.shopAddress}}</view>
                         </view>
                         <view class="weui-media-box__desc">{{order.foodNameShow}}</view>
                     </view>
-                </navigator>
-                <!-- <navigator url="" class="weui-media-box" hover-class="weui-cell_active">
-                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                        <view class="weui-flex weui-media-box__title">
-                            <view class="weui-flex__item">单号：财1</view>
-                            <view >2元</view>
-                        </view>
-                         <view class="weui-flex">
-                            <view class="weui-flex__item weui-media-box__desc">商家名</view>
-                            <view class="weui-flex__item weui-media-box__desc">住邦2000</view>
-                        </view>
-                        <view class="weui-media-box__desc">煎饼果子(1)+豆浆(1)</view>
-                    </view>
-                </navigator> -->
+                </navigator>                
+                <view wx-if="{{orders.length==0}}" class="weui-media-box  nodata">
+                  木有唉
+                </view>
             </view>
         </view>
 
@@ -39,15 +29,12 @@
             <view class="weui-panel__bd">
                 <view class="weui-media-box weui-media-box_appmsg">
                     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                        <view class="weui-flex">
-                            <view class="weui-flex__item weui-media-box__desc">煎饼果子(1)+豆浆(1)</view>
-                            <view class="weui-media-box__desc"><button class="weui-btn mini-btn" type="default" size="mini">再来一份</button></view>
+                        <view class="weui-flex" wx:for="{{lastedOrders}}" wx:for-index="index" wx:for-item="order" wx:key="index" >
+                            <view class="weui-flex__item weui-media-box__desc">{{order.foodNameShow}}</view>
+                            <view class="weui-media-box__desc"><button class="weui-btn mini-btn" type="default" size="mini" bindtap="copyOrder" data-id="{{order.id}}" >再来一份</button></view>
                         </view>
-                        <view class="weui-flex">
-                            <view class="weui-flex__item weui-media-box__desc">煎饼果子(1)+豆浆(1)</view>
-                            <view class="weui-media-box__desc">
-                              <button class="weui-btn mini-btn" type="default" size="mini">再来一份</button>
-                            </view>
+                        <view wx-if="{{lastedOrders.length==0}}" class="nodata">
+                          木有唉，关注店家快快下单吧
                         </view>
                     </view>
                 </view>
@@ -68,6 +55,10 @@
                             <view class="weui-flex__item">{{shop.Name}}</view>
                             <view >{{shop.Address}}</view>
                         </view>
+                    </view>
+                    
+                    <view wx-if="{{shops==null||shops.length==0}}" class="nodata">
+                      木有唉，进店扫码，提前下单，到店拿
                     </view>
                 </view>
             </view>

@@ -10,6 +10,7 @@
   box-sizing: border-box;
 } 
 .text-center{text-align: center;}
+.text-right{text-align: right;}
 .p{padding: 0rpx 10rpx 10rpx 20rpx;}
 
 .icon-num{
