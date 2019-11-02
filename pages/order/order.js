@@ -52,8 +52,6 @@ Page({
       if (result == null || result.Orders == null || result.Orders.length == 0) {
         return;
       }
-      result.Orders[0].arriveName = app.globalData.arrives.find(c => c.key == result.Orders[0].ArriveTimeType).value;
-      result.Orders[0].statusName = app.globalData.orderStatus.find(c => c.key == result.Orders[0].Status).value;
       that.setData({
         order: result
       });

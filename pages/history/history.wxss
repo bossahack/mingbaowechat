@@ -1,4 +1,4 @@
 page{font-size: 32rpx;}
-.order{border-bottom: 1px solid #eee;}
+.order{border-bottom: 1px solid #eee;padding-top: 10rpx;padding-bottom: 10rpx;}
 .order .item{padding:5rpx 0 5rpx 0;}
 .order .item .left{padding-right: 20rpx;width: 180rpx;text-align: right;}

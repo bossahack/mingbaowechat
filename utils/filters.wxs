@@ -6,14 +6,25 @@ module.exports = {
     var arr = date.replace('T', ' ').split(':');
     return arr.splice(0, arr.length - 1).join(':');
   },
-  getDetailShow:function(items){
-    var result="";
-    for(var i=0;i<items.length;i++){
-      var item=items[i];
-      if(i!=0){
-        result+="+";
+  getDetailShow: function (items) {
+    var result = "";
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      if (i != 0) {
+        result += "+";
       }
-      result += item.FoodName+"("+item.Qty+")";
+      result += item.FoodName + "(" + item.Qty + "份)";
+    }
+    return result;
+  },
+  getDetailPriceShow: function (items) {
+    var result = "";
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      if (i != 0) {
+        result += "+";
+      }
+      result += item.FoodName + "(￥" + item.FoodPrice+"*"+item.Qty + ")";
     }
     return result;
   },
@@ -37,6 +48,36 @@ module.exports = {
         break;
     }
     return desc;
+  },
+  getTotalPrice: function (items) {
+    if(!items)
+      return 0;
+    var result = 0;
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      result+=item.Qty*item.FoodPrice;     
+    }
+    return result;
+  },
+  getArriveDesc:function(arrive){
+    var desc = "未知";
+    switch (arrive) {
+      case 15:
+        desc = "15分钟左右取";
+        break;
+      case 30:
+        desc = "30分钟左右取";
+        break;
+      case 60:
+        desc = "一小时左右取";
+        break;
+      case 120:
+        desc = "2小时左右取";
+        break;
+      case 240:
+        desc = "4小时左右取";
+        break;
+    }
+    return desc;
   }
-  
 };

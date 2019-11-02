@@ -45,18 +45,7 @@ Page({
         let shop = result.Shops.find(c => c.Id == order.ShopId);
         order.shopName=shop.Name;
         order.shopAddress=shop.Address;
-        let items = result.OrderItems.filter(c=>c.OrderId==order.Id);
-        if(items.length==1){
-          let tmp = items[0];
-          order.foodNameShow = tmp.FoodName + "(￥" + tmp.FoodPrice + ")";
-          order.totalPrice = tmp.FoodPrice * tmp.Qty;
-        }else{
-          order.foodNameShow = items.reduce((a, b) => 
-            a.FoodName + "(￥" + a.FoodPrice + ")  "+
-          b.FoodName + "(￥" + b.FoodPrice + ")  "
-          );
-          order.totalPrice = items.reduce((a, b) => a.FoodPrice * a.Qty + b.FoodPrice * b.Qty);
-        }
+        order.items = result.OrderItems.filter(c=>c.OrderId==order.Id);        
         that.data.orders.push(order);
       });
 
@@ -75,16 +64,7 @@ Page({
       result.Orders.forEach((order, index) => {
         var orderNew={};
         orderNew.id=order.Id;        
-        let items = result.OrderItems.filter(c => c.OrderId == order.Id);
-        if (items.length == 1) {
-          let tmp = items[0];
-          orderNew.foodNameShow = tmp.FoodName + "(￥" + tmp.FoodPrice + ")";
-        } else {
-          orderNew.foodNameShow = items.reduce((a, b) =>
-            a.FoodName + "(￥" + a.FoodPrice + ")  " +
-            b.FoodName + "(￥" + b.FoodPrice + ")  "
-          );
-        }
+        orderNew.items = result.OrderItems.filter(c => c.OrderId == order.Id);       
         that.data.lastedOrders.push(orderNew);
       });
 
