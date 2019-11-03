@@ -23,7 +23,7 @@
           <view class="item" wx:for="{{foods}}" wx:for-index="index" wx:for-item="food" wx:key="index">
             <view class="weui-flex"> 
               <view>
-                <image src="{{food.Img}}"  style="width: 150rpx;height: 150rpx; margin:0rpx 20rpx 0 20rpx;border:1px solid #eee;border-radius:20rpx;" ></image>
+                <image src="{{food.Img}}"  style="width: 150rpx;height: 150rpx; margin:0rpx 20rpx 0 20rpx;border:1px solid #eee;border-radius:20rpx;" lazy-load="true"></image>
               </view>
               <view class="weui-flex__item" id="{{'A'+food.Id}}">
                 <view style="font-size:32rpx;">{{food.Name}}</view>
