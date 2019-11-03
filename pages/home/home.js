@@ -98,16 +98,24 @@ Page({
       });
     });
   },
-  copyOrder(e){
+  copyOrder(e) {
     var that = this;
     var id = e.currentTarget.dataset.id;
-    app.httpPost("UserOrder/CopyBookOrder?orderId="+id, null,function (result) {
-      wx.showToast({
-        title: '下单成功',
-        icon: 'success'
-      });
-     that.loadTodayOrder();
-    });
+    wx.showModal({
+      title: '确认吗？',
+      content: '确认再来一份吗？',
+      success(res) {
+        if(!res.confirm)
+           return;
+        app.httpPost("UserOrder/CopyBookOrder?orderId=" + id, null, function (result) {
+          wx.showToast({
+            title: '下单成功',
+            icon: 'success'
+          });
+          that.loadTodayOrder();
+        });
+      }
+    })
   },
   scancode(){
     let that=this;

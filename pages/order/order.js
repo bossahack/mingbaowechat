@@ -59,27 +59,47 @@ Page({
   },
   cancelOrder(){
     let that=this;
-    app.httpPost("userorder/Cancel?orderId=" + that.data.orderId,null,function(result){
-      wx.showToast({
-        title: '取消成功',
-        icon: 'success'
-      });
-      that.data.order.Orders[0].Status = 30;
-      that.data.order.Orders[0].statusName = app.globalData.orderStatus.find(c => c.key == 30).value;
-      that.setData({
-        order: that.data.order
-      })
-    });
+    wx.showModal({
+      title: '确定吗',
+      content: '确定要取消订单吗',
+      success(res){
+        if(!res.confirm)
+          return;
+        app.httpPost("userorder/Cancel?orderId=" + that.data.orderId, null, function (result) {
+          wx.showToast({
+            title: '取消成功',
+            icon: 'success'
+          });
+          that.data.order.Orders[0].Status = 30;
+          that.data.order.Orders[0].statusName = app.globalData.orderStatus.find(c => c.key == 30).value;
+          that.setData({
+            order: that.data.order
+          })
+        });
+      }
+    })
+
+    
   },
   copyOrder(){
     var that = this;
-    app.httpPost("userorder/CopyBookOrder?orderId=" + that.data.orderId, null, function (result) {
-      wx.showToast({
-        title: '下单成功',
-        icon: 'success'
-      });
-      that.loadTodayOrder();
-    });
+    wx.showModal({
+      title: '确认吗？',
+      content: '确认再来一份吗？',
+      success(res) {
+        if (!res.confirm)
+          return;
+
+        app.httpPost("userorder/CopyBookOrder?orderId=" + that.data.orderId, null, function (result) {
+          wx.showToast({
+            title: '下单成功',
+            icon: 'success'
+          });
+        });
+        
+      }
+    })
+    
   }
 
 })
