@@ -74,7 +74,12 @@ Page({
           that.data.order.Orders[0].statusName = app.globalData.orderStatus.find(c => c.key == 30).value;
           that.setData({
             order: that.data.order
-          })
+          });
+          var pages=getCurrentPages();
+          var prevPage = pages[pages.length - 2];  //上一个页面
+          prevPage.setData({
+            refershToday: true
+          });
         });
       }
     })
@@ -95,8 +100,12 @@ Page({
             title: '下单成功',
             icon: 'success'
           });
-        });
-        
+          var pages = getCurrentPages();
+          var prevPage = pages[pages.length - 2];  //上一个页面
+          prevPage.setData({
+            refershToday: true
+          });
+        });        
       }
     })
     
