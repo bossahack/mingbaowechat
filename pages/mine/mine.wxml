@@ -1,11 +1,9 @@
 <view class="weui-flex" >
-    <view class="left">
-      
-    </view>
-    <view class="weui-flex__item weui-flex">
-      <view class="left">微信号</view>
+    <view class="left">用户名:</view>
       <view class="weui-flex__item">
-      
+         <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" size="mini"> 登录 </button>
+      <block wx:else>
+        <text >{{userInfoDb.WXName}}</text>
+      </block>
       </view>
-    </view>
   </view>

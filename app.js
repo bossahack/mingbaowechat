@@ -6,7 +6,7 @@ App({
     
   },
   globalData: {
-    apiurl: 'http://192.168.124.13/',
+    apiurl: 'http://192.168.124.8/',
     arrives: [
       { key: 15, value: '15分钟左右取' },
       { key: 30, value: '30分钟左右取' },
