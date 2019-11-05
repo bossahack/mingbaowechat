@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/mine/mine",
     "pages/home/home",
     "pages/history/history",
     "pages/shop/shop",
@@ -24,6 +25,10 @@
       {
         "pagePath": "pages/history/history",
         "text": "历史订单"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
       }
     ]
   }
