@@ -1,9 +1,31 @@
 <view class="weui-flex" >
-    <view class="left">用户名:</view>
-      <view class="weui-flex__item">
-         <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" size="mini"> 登录 </button>
-      <block wx:else>
-        <text >{{userInfoDb.WXName}}</text>
-      </block>
-      </view>
+  <view class="weui-flex__item text-right">用户名:</view>
+    <view class="weui-flex__item">
+        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" size="mini"> 登录 </button>
+    <block wx:else>
+      <text >{{userInfoDb.WXName}}</text>
+    </block>
+    </view>
+</view>
+<view>
+  <view wx:if="{{showjoin}}">
+    <scroll-view class="intro" scroll-y="true" >
+      <rich-text>s</rich-text>
+    </scroll-view>
+
+  <form bindsubmit="confirmJoin">
+    <view class="weui-flex row" >
+      <view class="weui-flex__item text-right">联系方式:</view>
+        <view class="weui-flex__item">
+            <input type="text" class="input" placeholder="微信号" maxlength="20" value="{{userInfoDb.WxNum}}" name="wxnum"></input>
+        </view>
+    </view>
+    <view class="text-center row">
+      <button type="primary" formType="submit" size="mini">确定加入</button>
+    </view>
+  </form>
   </view>
+</view>
+<view class="text-center join-us">
+  ---<text class="link" bindtap='showJoin'>加入我们</text>---
+</view>

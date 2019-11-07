@@ -10,7 +10,8 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     userInfoDb:{
       WXName:'aa'
-    }
+    },
+    showjoin:true
   },
 
   /**
@@ -70,6 +71,9 @@ Page({
                   icon: 'none'
                 })
               }
+            },
+            fail:function(err){
+              console.log(err);
             }
           })
         }
@@ -88,8 +92,33 @@ Page({
     } else {
       that.setData({
         hasUserInfo: true,
-        userInfoDb: dbInfo.WXName
+        userInfoDb: dbInfo
       });
     }
   },
+  showJoin() {
+    let that = this;
+    that.setData({
+      showjoin: !that.data.showjoin
+    });
+  },
+  confirmJoin(e){
+    let that = this;
+    var wxnum = e.detail.value.wxnum;
+    if (!wxnum) {
+      wx.showToast({
+        title: '请输入联系方式',
+      });
+      return;
+    }
+    app.httpPost("user/JoinUs",  { WxNum:wxnum},function(result){
+      var dbInfo = wx.getStorageSync('userInfo');
+      dbInfo.WxNum=wxnum;
+      wx.setStorageSync('userInfo', dbInfo);
+      that.data.userInfoDb.WxNum=wxnum;
+      that.setData({
+        userInfoDb:that.data.userInfoDb
+      });
+    });
+  }
 })
