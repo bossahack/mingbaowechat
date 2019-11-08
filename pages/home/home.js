@@ -17,12 +17,31 @@ Page({
   onLoad: function (options) {
     if(options!=null&options.scene!=null){
       if(options.scene.startsWith("id")){
-        scene = decodeURIComponent(options.scene);
-        var id = scene.replace("id", "");
-        collectShop(id);
+        var timeInterval=setInterval(function(){
+          var token = wx.getStorageSync("token");
+          if(token==null)
+            return;
+          scene = decodeURIComponent(options.scene);
+          var id = scene.replace("id", "");
+          collectShop(id);
+          clearInterval(timeInterval);
+        },200);
+        
+      }
+      if(options.scene.startsWith("user")){
+        var timeInterval = setInterval(function () {
+          var token = wx.getStorageSync("token");
+          if (token == null)
+            return;
+          scene = decodeURIComponent(options.scene);
+          var id = scene.replace("user", "");
+          recommend(id);
+          clearInterval(timeInterval);
+        }, 200);
       }
     }
   },
+
   onPullDownRefresh: function () {
     let that = this;
     that.loadTodayOrder();
@@ -143,13 +162,17 @@ Page({
       }
     });
   },
-  collectShop(id){
+  collectShop(id) {
     app.httpPost("shop/CollectShop?shopid=" + id, null, function (result) {
       that.loadShops();
       wx.showToast({
         title: '关注成功',
         icon: 'success'
       });
+    });
+  },
+  recommend(userId) {
+    app.httpPost("user/Recommend?userId=" + userId, null, function (result) {
     });
   }
 })

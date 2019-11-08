@@ -8,6 +8,7 @@
   </view>
 </view>
 
+<view>商家端下载地址：<text></text></view>
 
 <view wx:if="{{userInfoDb.Type==1||showjoin}}">
   <scroll-view class="intro" scroll-y="true" >
