@@ -31,11 +31,6 @@ Component({
       return items;
     }
   },
-  // watch:{
-  //   'selectedFoods':function(selectedFoods){
-  //     console.log(selectedFoods);
-  //   }
-  // },
 methods:{
   /**
    * 生命周期函数--监听页面加载
@@ -173,16 +168,24 @@ methods:{
       bParam.Items.push({FoodId:item.id,Qty:item.qty});
     });
     app.httpPost("userorder/BookOrder",bParam,function(){
-      wx.showToast({
-        title: '下单成功',
-        icon: 'success'
-      });
+      let that=this;
 
       var pages = getCurrentPages();
       var prevPage = pages[pages.length - 2];  //上一个页面
       prevPage.setData({
         refershToday: true
       });
+      
+      wx.showModal({
+        title: '下单成功',
+        content: '下单成功，记得去拿哦',
+        success(res) {
+          that.setData({
+            selectedFoods:[]
+          });
+        }
+      })
+
     });
   }
 }
