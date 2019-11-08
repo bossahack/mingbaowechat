@@ -14,7 +14,7 @@
 
      <view class="weui-flex main">
        <scroll-view class="type" scroll-y="true" >
-          <view wx:for="{{types}}" wx:for-index="index" wx:for-item="type" class='item {{typeSelectedIndex==index?"selected":""}}' bindtap="typeTap" data-typeid="{{type.Id}}">
+          <view wx:for="{{types}}" wx:for-index="index" wx:for-item="type" class='item {{typeSelectedIndex==index?"selected":""}}' bindtap="typeTap" data-index="{{index}}" data-typeid="{{type.Id}}">
             {{type.Name}}
           </view>
         </scroll-view>
@@ -25,7 +25,7 @@
               <view>
                 <image src="{{food.Img}}"  style="width: 150rpx;height: 150rpx; margin:0rpx 20rpx 0 20rpx;border:1px solid #eee;border-radius:20rpx;" lazy-load="true"></image>
               </view>
-              <view class="weui-flex__item" id="{{'A'+food.Id}}">
+              <view class="weui-flex__item" id="{{'A'+food.Type+':'+food.Level}}">
                 <view style="font-size:32rpx;">{{food.Name}}</view>
                 <view style="color:#cc6e00;">￥:{{food.Price}}</view>
                 <view class="weui-flex" style="justify-content:flex-end;align-items:center;padding-right:10rpx;">

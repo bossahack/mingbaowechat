@@ -5,7 +5,7 @@ Component({
   behaviors: [computedBehavior],
   data: {
     shopId:2,
-    typeSelectedIndex:1,
+    typeSelectedIndex:0,
     foodLabel:'A0',
     arriveIndex:0,
     note:'',
@@ -64,7 +64,8 @@ methods:{
   typeTap(e){
     var id = e.target.dataset.typeid;
     this.setData({
-      foodLabel:"A"+id*2
+      foodLabel:"A"+id+":0",
+      typeSelectedIndex: e.target.dataset.index
     });
   },
 
