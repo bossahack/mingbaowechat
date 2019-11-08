@@ -168,22 +168,19 @@ methods:{
       bParam.Items.push({FoodId:item.id,Qty:item.qty});
     });
     app.httpPost("userorder/BookOrder",bParam,function(){
-      let that=this;
-
       var pages = getCurrentPages();
       var prevPage = pages[pages.length - 2];  //上一个页面
       prevPage.setData({
         refershToday: true
       });
-      
+
+      that.setData({
+        selectedFoods: []
+      });
+
       wx.showModal({
         title: '下单成功',
-        content: '下单成功，记得去拿哦',
-        success(res) {
-          that.setData({
-            selectedFoods:[]
-          });
-        }
+        content: '下单成功，记得取哦',
       })
 
     });
