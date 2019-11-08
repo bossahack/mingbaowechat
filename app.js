@@ -1,4 +1,5 @@
 //app.js
+var eventBus = require('utils/eventbus.js')
 App({
   onLaunch: function () {
     if (!wx.getStorageSync('token'))
@@ -20,7 +21,8 @@ App({
       { key: 20, value: '已完成' },
       { key: 30, value: '已取消' },
       { key: 40, value: '异常单' },
-    ]
+    ],
+    bus: eventBus.eventBus
   },
   login: function () {
     var that = this;
@@ -38,6 +40,7 @@ App({
                 var token = result.data.Token;
                 wx.setStorageSync('token', token);
                 wx.setStorageSync('userInfo', result.data);
+                that.globalData.bus.emit("loginSuccess");
               } else {
                 wx.showToast({
                   title: '登录失败',

@@ -1,19 +1,21 @@
 <view class="weui-flex" >
   <view class="weui-flex__item text-right">用户名:</view>
-    <view class="weui-flex__item">
-        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" size="mini"> 登录 </button>
+  <view class="weui-flex__item">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" size="mini"> 登录 </button>
     <block wx:else>
       <text >{{userInfoDb.WXName}}</text>
     </block>
-    </view>
+  </view>
 </view>
-<view>
-  <view wx:if="{{showjoin}}">
-    <scroll-view class="intro" scroll-y="true" >
-      <rich-text>s</rich-text>
-    </scroll-view>
 
-  <form bindsubmit="confirmJoin">
+
+<view wx:if="{{userInfoDb.Type==1||showjoin}}">
+  <scroll-view class="intro" scroll-y="true" >
+    <rich-text>s</rich-text>
+  </scroll-view>
+
+  <view class="text-center link row" bindtap="showEdit">编辑资料</view>
+  <form bindsubmit="confirmJoin" wx:if="{{editShow}}">
     <view class="weui-flex row" >
       <view class="weui-flex__item text-right">联系方式:</view>
         <view class="weui-flex__item">
@@ -24,8 +26,17 @@
       <button type="primary" formType="submit" size="mini">确定加入</button>
     </view>
   </form>
+
+  <view class="text-center link row" bindtap="showQrcode" wx:if="{{userInfoDb.Type==1}}">展示推广码</view>
+  <view class="text-center" wx:if="{{qrShow}}">
+    <image src="{{qrCode}}" style="width:300rpx;" mode="aspectFit"></image>
   </view>
+
+  <view class="text-center link row"  wx:if="{{userInfoDb.Type==1}}">我的推广</view>
+
 </view>
-<view class="text-center join-us">
+
+
+<view class="text-center join-us" wx:if="{{userInfoDb.Type!=1}}">
   ---<text class="link" bindtap='showJoin'>加入我们</text>---
 </view>

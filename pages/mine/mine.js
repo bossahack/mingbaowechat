@@ -1,5 +1,6 @@
 // pages/mine/mine.js
 const app = getApp();
+var bus = app.globalData.bus;
 Page({
 
   /**
@@ -8,10 +9,9 @@ Page({
   data: {
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    userInfoDb:{
-      WXName:'aa'
-    },
-    showjoin:true
+    userInfoDb:{},
+    showjoin:false,
+    qrCode:null,
   },
 
   /**
@@ -19,6 +19,9 @@ Page({
    */
   onLoad: function (options) {
     this.initInfo();
+    bus.on("loginSuccess", (result) => {
+      this.initInfo();
+    });
   },
 
   /**
@@ -44,42 +47,11 @@ Page({
   },
 
   getUserInfo: function (e) {
-    var that = this;
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if (res.code) {
-          wx.request({
-            url: app.globalData.apiurl + 'user/UpdateWXInfo',
-            method: 'post',
-            data: {
-              code: res.code,
-              encryptedData: e.detail.encryptedData,
-              iv: e.detail.iv,
-              rawData: e.detail.rawData,
-              signature: e.detail.signature
-            },
-            success: function (result) {
-              if (result.statusCode == 200) {
-                var token = result.data.Token;
-                wx.setStorageSync('token', token);
-                wx.setStorageSync('userInfo', result.data);
-                that.initInfo();
-              } else {
-                wx.showToast({
-                  title: '登录失败',
-                  icon: 'none'
-                })
-              }
-            },
-            fail:function(err){
-              console.log(err);
-            }
-          })
-        }
-      }
-    })
-
+    var that = this;    
+    app.httpPost("user/UpdateWXInfo", e.detail.userInfo, function (result) {
+      wx.setStorageSync('userInfo', result);
+      that.initInfo();
+    });
   },
 
   initInfo:function(){
@@ -95,9 +67,22 @@ Page({
         userInfoDb: dbInfo
       });
     }
+    var qrcode = wx.getStorageSync("qrCodeStr");
+    if(!!qrcode){
+      that.setData({
+        qrCode: qrcode
+      })
+    }
   },
   showJoin() {
     let that = this;
+    if (!that.data.userInfoDb.WXName){
+      wx.showToast({
+        title: '请先登录',
+        icon: 'none'
+      });
+      return;
+    }
     that.setData({
       showjoin: !that.data.showjoin
     });
@@ -108,17 +93,48 @@ Page({
     if (!wxnum) {
       wx.showToast({
         title: '请输入联系方式',
+        icon: 'none'
       });
       return;
     }
     app.httpPost("user/JoinUs",  { WxNum:wxnum},function(result){
       var dbInfo = wx.getStorageSync('userInfo');
       dbInfo.WxNum=wxnum;
+      dbInfo.Type=1;
       wx.setStorageSync('userInfo', dbInfo);
       that.data.userInfoDb.WxNum=wxnum;
+      that.data.userInfoDb.Type=1;
       that.setData({
         userInfoDb:that.data.userInfoDb
       });
+    });
+  },
+  showQrcode(){
+    this.setData({
+      qrShow: !this.data.qrShow
+    });
+    this.getQrcode();
+  },
+  showEdit(){
+    this.setData({
+      editShow:!this.data.editShow
+    });
+  },
+  getQrcode(){
+    let that = this; 
+    var qrcode = wx.getStorageSync("qrCodeStr");
+    if (!!qrcode) {
+      that.setData({
+        qrCode: qrcode
+      });
+      return;
+    }
+    app.httpGet('user/GetUserQrCode',function(result){
+      var str = 'data:image/png;base64,' + result;
+      wx.setStorageSync('qrCodeStr', str)
+      that.setData({
+        qrCode: str
+      })
     });
   }
 })
