@@ -8,11 +8,12 @@
   </view>
 </view>
 
-<view>商家端下载地址：<text></text></view>
 
 <view wx:if="{{userInfoDb.Type==1||showjoin}}">
-  <scroll-view class="intro" scroll-y="true" >
-    <rich-text>s</rich-text>
+
+  <view class="text-center link row" bindtap="showIntro">介绍</view>
+  <scroll-view class="intro" wx:if="{{introShow}}" >
+    <rich-text nodes="{{intro}}"></rich-text>
   </scroll-view>
 
   <view class="text-center link row" bindtap="showEdit">编辑资料</view>
@@ -38,6 +39,7 @@
 </view>
 
 
-<view class="text-center join-us" wx:if="{{userInfoDb.Type!=1}}">
-  ---<text class="link" bindtap='showJoin'>加入我们</text>---
+<view class="text-center join-us">
+<view>商家端下载地址：<text style="font-size:12px;" selectable="true">{{downUrl}}</text></view>
+  <text class="link" bindtap='showJoin'  wx:if="{{userInfoDb.Type!=1}}">---加入我们---</text>
 </view>

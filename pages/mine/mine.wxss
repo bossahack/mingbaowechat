@@ -1,5 +1,5 @@
 /* pages/mine/mine.wxss */
 .intro{
-  max-height: 500rpx;margin: 5rpx 5rpx 5rpx 5rpx;
+  margin: 5rpx 5rpx 5rpx 5rpx;font-size: 13px;
 }
 .join-us{position:absolute;bottom: 0;left:0;right:0}

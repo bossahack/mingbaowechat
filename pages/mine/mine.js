@@ -1,6 +1,7 @@
 // pages/mine/mine.js
 const app = getApp();
 var bus = app.globalData.bus;
+
 Page({
 
   /**
@@ -12,6 +13,8 @@ Page({
     userInfoDb:{},
     showjoin:false,
     qrCode:null,
+    intro: null,
+    introShow:false,
   },
 
   /**
@@ -22,6 +25,7 @@ Page({
     bus.on("loginSuccess", (result) => {
       this.initInfo();
     });
+    this.getDownLoadUrl();
   },
 
   /**
@@ -135,6 +139,31 @@ Page({
       that.setData({
         qrCode: str
       })
+    });
+  },
+  getIntro(){
+    let that=this;
+    app.httpGet("dict/get?flag=userIntro",function(res){
+      that.setData({
+        intro:res
+      });
+    });
+  },
+  showIntro(){
+    let that=this;
+    if(!that.data.intro){
+      that.getIntro();
+    }
+    this.setData({
+      introShow:!that.data.introShow
+    });
+  },
+  getDownLoadUrl(){
+    let that = this;
+    app.httpGet("dict/get?flag=downUrl", function (res) {
+      that.setData({
+        downUrl: res
+      });
     });
   }
 })
