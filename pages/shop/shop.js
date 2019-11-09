@@ -163,27 +163,58 @@ methods:{
     if(that.data.selectedFoods==null||that.data.selectedFoods.length<=0){
       return;
     }
-    var bParam = { ShopId: that.data.shopId, ArriveTimeType: that.data.arrives[that.data.arriveIndex].key, Note: that.data.note, Items: []};
-    that.data.selectedFoods.forEach((item,index)=>{
-      bParam.Items.push({FoodId:item.id,Qty:item.qty});
-    });
-    app.httpPost("userorder/BookOrder",bParam,function(res){
-      var pages = getCurrentPages();
-      var prevPage = pages[pages.length - 2];  //上一个页面
-      prevPage.setData({
-        refershToday: true
-      });
 
-      that.setData({
-        selectedFoods: []
-      });
+    wx.showModal({
+      title: '确认吗？',
+      content: '确认下单吗？',
+      success(res) {
+        if (!res.confirm)
+          return;
+        var bParam = { ShopId: that.data.shopId, ArriveTimeType: that.data.arrives[that.data.arriveIndex].key, Note: that.data.note, Items: [] };
+        that.data.selectedFoods.forEach((item, index) => {
+          bParam.Items.push({ FoodId: item.id, Qty: item.qty });
+        });
+        app.httpPost("userorder/BookOrder", bParam, function (res) {
+          if (res) {
+            var ids = res.split(',');
+            var foodName = "";
+            that.data.foods.forEach((food, index) => {
+              if (ids.indexOf(food.Id.toString()) > -1) {
+                food.Status = 1;
+                foodName += food.Name + ",";
+              }
+            });
+            that.setData({
+              foods: that.data.foods
+            });
+            wx.showModal({
+              title: '失败啦！',
+              content: foodName + "卖完啦，请重新选购",
+            })
+            return;
+          }
+          var pages = getCurrentPages();
+          var prevPage = pages[pages.length - 2];  //上一个页面
+          prevPage.setData({
+            refershToday: true
+          });
+          that.data.foods.forEach((food, index) => {
+            food.qty = 0;
+          });
+          that.setData({
+            selectedFoods: [],
+            foods: that.data.foods
+          });
 
-      wx.showModal({
-        title: '下单成功',
-        content: '下单成功，记得取哦',
-      })
+          wx.showModal({
+            title: '下单成功',
+            content: '下单成功，记得取哦',
+          })
 
-    });
+        });
+      }
+    })
+   
   }
 }
 })

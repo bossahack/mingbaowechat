@@ -57,7 +57,7 @@ module.exports = {
       var item = items[i];
       result+=item.Qty*item.FoodPrice;     
     }
-    return result;
+    return result.toFixed(2);
   },
   getArriveDesc:function(arrive){
     var desc = "未知";
@@ -88,6 +88,6 @@ module.exports = {
       var item = items[i];
       result += item.qty * item.price;
     }
-    return result;
+    return result.toFixed(2);
   }
 };

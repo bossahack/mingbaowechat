@@ -9,6 +9,7 @@
         <view class="weui-flex__item">
           <view class="p">{{shop.Name}}</view>
           <view class="p">{{shop.Address}}</view>
+          <view class="p red" >{{shop.Status==10?"今天不营业":""}}</view>
         </view>
     </view>
 
@@ -29,14 +30,11 @@
                 <view style="font-size:32rpx;">{{food.Name}}</view>
                 <view style="color:#cc6e00;">￥:{{food.Price}}</view>
                 <view class="weui-flex" style="justify-content:flex-end;align-items:center;padding-right:10rpx;">
+                  <text class="red" wx:if="{{food.Status!=0}}">卖没啦</text>
                     <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png" wx-if="{{food.qty>0}}" bindtap="minusFood" data-id="{{food.Id}}" />
-                 
-                 <text style="margin-left:10rpx;margin-right:10rpx;"  >{{food.qty}}</text>
-                 
-                    <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" bindtap="plusFood" data-id="{{food.Id}}" />
-                 
+                 <text style="margin-left:10rpx;margin-right:10rpx;" wx:if="{{food.qty!=0}}" >{{food.qty}}</text>
+                    <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" bindtap="plusFood" data-id="{{food.Id}}" wx:if="{{food.Status==0}}" />
                 </view>
-                <!-- <food-choose class="weui-flex" foodId="{{food.Id}}" selectedFoods="{{selectedFoods}}"  ></food-choose> -->
               </view>
             </view>
           </view>
