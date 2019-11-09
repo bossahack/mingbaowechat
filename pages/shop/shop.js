@@ -167,7 +167,7 @@ methods:{
     that.data.selectedFoods.forEach((item,index)=>{
       bParam.Items.push({FoodId:item.id,Qty:item.qty});
     });
-    app.httpPost("userorder/BookOrder",bParam,function(){
+    app.httpPost("userorder/BookOrder",bParam,function(res){
       var pages = getCurrentPages();
       var prevPage = pages[pages.length - 2];  //上一个页面
       prevPage.setData({

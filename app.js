@@ -7,7 +7,7 @@ App({
     
   },
   globalData: {
-    apiurl: 'http://172.18.22.67/',
+    apiurl: 'http://192.168.124.13/',
     arrives: [
       { key: 15, value: '15分钟左右取' },
       { key: 30, value: '30分钟左右取' },
@@ -126,7 +126,7 @@ App({
     }
     if (response.statusCode == 500) {
       wx.showToast({
-        title: response.data.ExceptionMessage,
+        title: response.data,
         icon: 'none'
       })
       return;
