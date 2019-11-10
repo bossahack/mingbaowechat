@@ -1,1 +1,3 @@
 /* pages/spread/spread.wxss */
+.left{font-size: 14px;}
+.right{font-size: 14px;}

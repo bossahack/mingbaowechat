@@ -86,6 +86,11 @@ Page({
         orders: that.data.orders
       });
     });
+  },
+  toDetail(e){
+    wx.navigateTo({
+      url: '/pages/order/order?id=' + e.currentTarget.dataset.id,
+    })
   }
 
 })

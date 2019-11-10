@@ -1,10 +1,15 @@
 
-module.exports = {  
+module.exports = {
   timeFormat: function (date) {
-    if(!date)
+    if (!date)
       return;
     var arr = date.replace('T', ' ').split(':');
     return arr.splice(0, arr.length - 1).join(':');
+  },
+  dateFormat: function (date) {
+    if (!date)
+      return;
+    return date.split('T')[0];
   },
   getDetailShow: function (items) {
     var result = "";

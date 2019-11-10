@@ -4,8 +4,7 @@
     "pages/home/home",
     "pages/history/history",
     "pages/shop/shop",
-    "pages/order/order",
-    "pages/spread/spread"
+    "pages/order/order"
   ],
   "window": {
     "backgroundTextStyle": "dark",

@@ -1,5 +1,5 @@
 <wxs module="filters" src="../../utils/filters.wxs"></wxs>
-<view class="order" wx:for="{{orders}}" wx:key="{{order.Id}}" wx:for-index="index" wx:for-item="order">
+<view class="order" wx:for="{{orders}}" wx:key="{{order.id}}" wx:for-index="index" wx:for-item="order" bindtap="toDetail" data-id="{{order.id}}">
   <view class="weui-flex item" >
     <view class="left">商家：</view>
     <view class="weui-flex__item right">{{order.shopName}}</view>

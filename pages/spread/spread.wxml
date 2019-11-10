@@ -1,2 +1,21 @@
-<!--pages/spread/spread.wxml-->
-<text>pages/spread/spread.wxml</text>
+<wxs module="filters" src="../../utils/filters.wxs"></wxs>
+<view>有效收益：￥33</view>
+
+<view class="row text-center" >昨日统计</view>
+<view class="weui-flex item">
+  <view class="weui-flex__item left" style="font-weight:bold">店名</view>
+  <view class="weui-flex__item text-right right" style="font-weight:bold">有效单</view>
+</view>
+ <view class="weui-flex item" wx:for="{{shopOrders}}" wx:key="{{order.Id}}" wx:for-index="index" wx:for-item="order">
+    <view class="weui-flex__item left">{{order.ShopName}}:</view>
+    <view class="right">{{order.EffectQty}}</view>
+  </view>
+<view class="row text-center" >我的推广店铺</view>
+<view class="weui-flex item">
+  <view class="weui-flex__item left" style="font-weight:bold">店名</view>
+  <view class="weui-flex__item text-right right" style="font-weight:bold">创建时间</view>
+</view>
+<view class="weui-flex item" wx:for="{{shops}}" wx:key="{{shop.Id}}" wx:for-index="index" wx:for-item="shop">
+  <view class="weui-flex__item left">{{shop.Name}}</view>
+  <view class="weui-flex__item text-right right">{{filters.dateFormat(shop.CreateDate)}}</view>
+</view>

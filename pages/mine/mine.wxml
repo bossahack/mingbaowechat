@@ -34,7 +34,9 @@
     <image src="{{qrCode}}" style="width:300rpx;" mode="aspectFit"></image>
   </view>
 
-  <view class="text-center link row"  wx:if="{{userInfoDb.Type==1}}">我的推广</view>
+  <view class="text-center link row"  wx:if="{{userInfoDb.Type==1}}">
+  <navigator url="/pages/spread/spread">我的推广</navigator>
+  </view>
 
 </view>
 
