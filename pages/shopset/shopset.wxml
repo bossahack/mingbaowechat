@@ -1,0 +1,19 @@
+
+  <view class="text-center link row" bindtap="showIntro">开通</view>
+  <form bindsubmit="confirmJoin" >
+    <view class="weui-flex row" >
+      <view class="text-right">登录帐号:</view>
+        <view class="weui-flex__item">
+            <input type="text" class="input" placeholder="手机号" name="phone"></input>
+        </view>
+    </view>
+    <view class="weui-flex row" >
+      <view class="text-right">登录密码:</view>
+        <view class="weui-flex__item">
+            <input type="text" class="input" name="pwd"></input>
+        </view>
+    </view>
+    <view class="text-center row">
+      <button type="primary" formType="submit" size="mini">确定</button>
+    </view>
+  </form>
