@@ -1,18 +1,25 @@
 // pages/shopset/shopset.js
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    hasShop:true,
+    loginInfo:{
+      Phone:null,
+      Pwd:null,
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getLoginInfo();
+    this.getDownLoadUrl();
   },
 
   /**
@@ -81,16 +88,49 @@ Page({
       });
       return;
     }
-    app.httpPost("shop/create", { UserName: phone }, function (result) {
-      var dbInfo = wx.getStorageSync('userInfo');
-      dbInfo.WxNum = wxnum;
-      dbInfo.Type = 1;
-      wx.setStorageSync('userInfo', dbInfo);
-      that.data.userInfoDb.WxNum = wxnum;
-      that.data.userInfoDb.Type = 1;
+    app.httpPost("shop/create", { Phone: phone,Pwd:pwd }, function (result) {
       that.setData({
-        userInfoDb: that.data.userInfoDb
+        loginInfo: {Phone:phone,Pwd:pwd},
+        hasShop: true
+      });
+      wx.showToast({
+        title: '开通成功！您可通过此账号密码到app端登录',
+        icon: 'none'
       });
     });
   },
+  submitPwd(e){
+    let that=this;
+    var pwd = e.detail.value.pwd;
+    if (!pwd) {
+      wx.showToast({
+        title: '请输入密码',
+        icon: 'none'
+      });
+      return;
+    }
+    app.httpPost('user/UpdateLoginPwd?pwd=' + pwd,null,function(res){
+      wx.showToast({
+        title: '密码修改成功',
+        icon: 'none'
+      });
+    });
+  },
+  getLoginInfo(){
+    let that=this;
+    app.httpGet('user/GetLoginInfo',function(result){
+      that.setData({
+        loginInfo:result,
+        hasShop:!!result.Phone
+      });
+    });
+  },
+  getDownLoadUrl() {
+    let that = this;
+    app.httpGet("dict/get?flag=downUrl", function (res) {
+      that.setData({
+        downUrl: res
+      });
+    });
+  }
 })

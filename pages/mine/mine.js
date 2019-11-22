@@ -25,7 +25,6 @@ Page({
     bus.on("loginSuccess", (result) => {
       this.initInfo();
     });
-    this.getDownLoadUrl();
   },
 
   /**
@@ -158,12 +157,9 @@ Page({
       introShow:!that.data.introShow
     });
   },
-  getDownLoadUrl(){
-    let that = this;
-    app.httpGet("dict/get?flag=downUrl", function (res) {
-      that.setData({
-        downUrl: res
-      });
-    });
+  toShopSet(){
+    wx.navigateTo({
+      url: '../shopset/shopset'
+    })
   }
 })

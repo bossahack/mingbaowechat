@@ -42,6 +42,6 @@
 
 
 <view class="text-center join-us">
-<view>商家端下载地址：<text style="font-size:12px;" selectable="true">{{downUrl}}</text></view>
   <text class="link" bindtap='showJoin'  wx:if="{{userInfoDb.Type!=1}}">---加入我们---</text>
+  <text class="link" bindtap='toShopSet'>---我是商家---</text>
 </view>

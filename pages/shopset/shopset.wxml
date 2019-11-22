@@ -1,6 +1,6 @@
 
-  <view class="text-center link row" bindtap="showIntro">开通</view>
-  <form bindsubmit="confirmJoin" >
+  <view class="text-center link row" bindtap="showIntro" wx:if="{{!hasShop}}" >开通店铺</view>
+  <form bindsubmit="confirmJoin"  wx:if="{{!hasShop}}">
     <view class="weui-flex row" >
       <view class="text-right">登录帐号:</view>
         <view class="weui-flex__item">
@@ -10,10 +10,34 @@
     <view class="weui-flex row" >
       <view class="text-right">登录密码:</view>
         <view class="weui-flex__item">
-            <input type="text" class="input" name="pwd"></input>
+            <input type="password" class="input" name="pwd"></input>
         </view>
     </view>
     <view class="text-center row">
       <button type="primary" formType="submit" size="mini">确定</button>
     </view>
   </form>
+
+  <view class="text-center link row" bindtap="showIntro" wx:if="{{hasShop}}">已开通店铺</view>
+  <form bindsubmit="submitPwd"  wx:if="{{hasShop}}">
+    <view class="weui-flex row" >
+      <view class="text-right">登录帐号:</view>
+        <view class="weui-flex__item">
+            <input type="text" class="input" disabled="true" value="{{loginInfo.Phone}}" name="phone"></input>
+        </view>
+    </view>
+    <view class="weui-flex row" >
+      <view class="text-right">登录密码:</view>
+        <view class="weui-flex__item">
+            <input type="password" class="input" name="pwd"></input>
+        </view>
+    </view>
+    <view class="text-center row">
+      <button type="primary" formType="submit" size="mini">修改密码</button>
+    </view>
+  </form>
+
+
+<view class="text-center join-us">
+<view>商家端下载地址：<text style="font-size:12px;" selectable="true">{{downUrl}}</text></view>
+</view>
