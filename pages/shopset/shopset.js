@@ -80,6 +80,13 @@ Page({
       });
       return;
     }
+    if (!RegExp("^[1][3,4,5,7,8][0-9]{9}\$").test(phone)){
+      wx.showToast({
+        title: '手机号格式不正确，请检查',
+        icon: 'none'
+      });
+      return;
+    }
     var pwd = e.detail.value.pwd;
     if (!pwd) {
       wx.showToast({
