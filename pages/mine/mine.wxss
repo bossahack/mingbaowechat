@@ -2,4 +2,4 @@
 .intro{
   margin: 5rpx 5rpx 5rpx 5rpx;font-size: 13px;
 }
-.join-us{position:absolute;bottom: 0;left:0;right:0}
+.join-us{position:fixed;bottom: 0;left:0;right:0}

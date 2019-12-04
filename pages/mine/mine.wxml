@@ -9,7 +9,7 @@
 </view>
 
 
-<view wx:if="{{userInfoDb.Type==1||showjoin}}">
+<view wx:if="{{userInfoDb.Type==1||showjoin}}" style="margin-bottom:60rpx;">
 
   <view class="text-center link row" bindtap="showIntro">介绍</view>
   <scroll-view class="intro" wx:if="{{introShow}}" >
@@ -42,6 +42,7 @@
 
 
 <view class="text-center join-us">
+  <view>有限的劳动，长久的收益</view>
   <text class="link" bindtap='showJoin'  wx:if="{{userInfoDb.Type!=1}}">---加入我们---</text>
   <text class="link" bindtap='toShopSet'>---我是商家---</text>
 </view>
