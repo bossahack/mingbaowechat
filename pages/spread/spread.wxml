@@ -1,5 +1,5 @@
 <wxs module="filters" src="../../utils/filters.wxs"></wxs>
-<view>有效收益：￥33</view>
+<view>有效收益：￥{{income}}</view>
 
 <view class="row text-center" >昨日统计</view>
 <view class="weui-flex item">

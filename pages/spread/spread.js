@@ -15,6 +15,7 @@ Page({
   onLoad: function (options) {
     this.getMyShop();
     this.getShopOrder();
+    this.getIncome();
   },
 
   /**
@@ -58,6 +59,14 @@ Page({
     app.httpGet("spread/GetMyShopOrder", function (res) {
       that.setData({
         shopOrders: res
+      });
+    })
+  },
+  getIncome() {
+    let that = this;
+    app.httpGet("user/GetIncome", function (res) {
+      that.setData({
+        income: res
       });
     })
   }
