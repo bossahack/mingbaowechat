@@ -16,6 +16,7 @@ Page({
     this.getMyShop();
     this.getShopOrder();
     this.getIncome();
+    this.getMyUsers();
   },
 
   /**
@@ -67,6 +68,14 @@ Page({
     app.httpGet("user/GetIncome", function (res) {
       that.setData({
         income: res
+      });
+    })
+  },
+  getMyUsers(){
+    let that = this;
+    app.httpGet("user/GetMyRecommenders", function (res) {
+      that.setData({
+        myUsers: res
       });
     })
   }

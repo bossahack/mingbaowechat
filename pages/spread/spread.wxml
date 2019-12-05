@@ -10,7 +10,10 @@
     <view class="weui-flex__item left">{{order.ShopName}}:</view>
     <view class="right">{{order.EffectQty}}</view>
   </view>
-<view class="row text-center" >我的推广店铺</view>
+<view wx-if="shopOrders.lenght==0" class="no-data">
+  暂无数据 
+</view>
+<view class="row text-center" >我推广的店铺</view>
 <view class="weui-flex item">
   <view class="weui-flex__item left" style="font-weight:bold">店名</view>
   <view class="weui-flex__item text-right right" style="font-weight:bold">创建时间</view>
@@ -18,4 +21,20 @@
 <view class="weui-flex item" wx:for="{{shops}}" wx:key="{{shop.Id}}" wx:for-index="index" wx:for-item="shop">
   <view class="weui-flex__item left">{{shop.Name}}</view>
   <view class="weui-flex__item text-right right">{{filters.dateFormat(shop.CreateDate)}}</view>
+</view>
+<view wx-if="shops.lenght==0" class="no-data">
+  暂无数据 
+</view>
+
+<view class="row text-center" >我推广的用户</view>
+<view class="weui-flex item">
+  <view class="weui-flex__item left" style="font-weight:bold">用户名</view>
+  <view class="weui-flex__item text-right right" style="font-weight:bold">有无店铺</view>
+</view>
+<view class="weui-flex item" wx:for="{{myUsers}}" wx:key="{{index}}" wx:for-index="index" wx:for-item="user">
+  <view class="weui-flex__item left">{{user.WxName}}</view>
+  <view class="weui-flex__item text-right right">{{user.HasShop?"有":"无"}}</view>
+</view>
+<view wx-if="myUsers.lenght==0" class="no-data">
+  暂无数据 
 </view>

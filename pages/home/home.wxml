@@ -18,9 +18,9 @@
                         </view>
                         <view class="weui-media-box__desc">{{filters.getDetailPriceShow(order.items)}}</view>
                     </view>
-                </navigator>                
+                </navigator>
                 <view wx-if="{{orders.length==0}}" class="weui-media-box  nodata">
-                  木有唉
+                  木有唉，关注店铺就可下单啦
                 </view>
             </view>
         </view>
@@ -60,7 +60,9 @@
                     </view>
                     
                     <view wx-if="{{shops==null||shops.length==0}}" class="nodata">
-                      木有唉
+                    <view>木有唉</view>
+                      <view>扫码关注你喜欢的店铺，便可提前预约，到店享用或自提哦。</view>
+                      <view>店家没有开通？成为推广者，一次推广，长久收益哦！详情见“我的”</view>
                     </view>
                 </view>
             </view>

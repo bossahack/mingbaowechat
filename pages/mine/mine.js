@@ -50,7 +50,9 @@ Page({
   },
 
   getUserInfo: function (e) {
-    var that = this;    
+    var that = this;
+    if (!e.detail.userInfo)
+      return;
     app.httpPost("user/UpdateWXInfo", e.detail.userInfo, function (result) {
       wx.setStorageSync('userInfo', result);
       that.initInfo();

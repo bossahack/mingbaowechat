@@ -102,7 +102,8 @@ Page({
       });
       wx.showToast({
         title: '开通成功！您可通过此账号密码到app端登录',
-        icon: 'none'
+        icon: 'success',
+        duration:3000
       });
     });
   },
@@ -119,7 +120,7 @@ Page({
     app.httpPost('user/UpdateLoginPwd?pwd=' + pwd,null,function(res){
       wx.showToast({
         title: '密码修改成功',
-        icon: 'none'
+        icon: 'success'
       });
     });
   },

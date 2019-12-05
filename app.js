@@ -45,7 +45,7 @@ App({
                 wx.showToast({
                   title: '登录失败',
                   icon: 'none'
-                })
+                });
               }
             },
             fail: function (result) {
@@ -68,7 +68,8 @@ App({
     var that = this;
     wx.showLoading({
       title: '加载中...',
-    })
+      mask:true
+    });
     wx.request({
       url: this.globalData.apiurl + url,
       method: 'post',
@@ -93,6 +94,7 @@ App({
     var that = this;
     wx.showLoading({
       title: '加载中...',
+      mask: true
     })
     wx.request({
       url: this.globalData.apiurl + url,
