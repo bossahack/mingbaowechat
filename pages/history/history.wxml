@@ -20,6 +20,6 @@
 <view wx-if="{{noMore}}" class="no-data">
   ---没有更多数据了---
 </view>
-<view wx-if="orders.lenght==0" class="no-data">
+<view wx-if="orders.lenght==0" class=" row no-data">
   还没下过单哦 
 </view>

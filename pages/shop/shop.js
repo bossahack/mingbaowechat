@@ -4,7 +4,7 @@ const app = getApp();
 Component({
   behaviors: [computedBehavior],
   data: {
-    shopId:2,
+    shopId:0,
     typeSelectedIndex:0,
     foodLabel:'A0',
     arriveIndex:0,
@@ -36,6 +36,19 @@ methods:{
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var dbInfo = wx.getStorageSync('userInfo');
+    if (dbInfo == null || !dbInfo.WXName) {
+      wx.showModal({
+        title: '请先登录',
+        content: '请先登录',
+        success() {
+          wx.switchTab({
+            url: '../mine/mine',
+          });
+        }
+      })
+    }
+
     this.data.id=options.id;
     this.loadType();
     this.loadProduct();
