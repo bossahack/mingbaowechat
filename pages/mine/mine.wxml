@@ -44,5 +44,5 @@
 <view class="text-center join-us">
   <view style="font-size:14px;">有限的劳动，长久的收益</view>
   <text class="link" bindtap='showJoin'  wx:if="{{userInfoDb.Type!=1}}">---加入我们---</text>
-  <text class="link" bindtap='toShopSet'>---我是商家---</text>
+  <text class="link" bindtap='toShopSet'>---商家入口---</text>
 </view>
