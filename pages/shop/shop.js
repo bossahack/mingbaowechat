@@ -49,7 +49,7 @@ methods:{
       })
     }
 
-    this.data.id=options.id;
+    this.data.shopId=options.id;
     this.loadType();
     this.loadProduct();
     this.loadShop();

@@ -110,7 +110,7 @@ Page({
   },
   toShop: function (e) {
     var that = this;
-    var id = e.currentTarget.id;
+    var id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../shop/shop?id=' + id
     })
