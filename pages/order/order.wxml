@@ -42,6 +42,10 @@
                 <view >状态：</view>
                 <view class="weui-flex__item">{{filters.getStatusDesc(order.Orders[0].Status)}}</view>
             </view>
+            <view class="weui-flex">
+                <view >备注：</view>
+                <view class="weui-flex__item">{{order.Orders[0].Note}}</view>
+            </view>
           </view>
       </view>
 
