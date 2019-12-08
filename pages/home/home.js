@@ -152,8 +152,8 @@ Page({
       success(res) {
         console.log(res.path);
         if (res.path.startsWith(qrCodePath)){
-          var id=res.path.replace(str,"");
-          collectShop(id);
+          var id = decodeURIComponent(res.path).replace(qrCodePath,"");
+          that.collectShop(id);
         }
       },
       fail(err) {
