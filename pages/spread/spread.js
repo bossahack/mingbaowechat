@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    myUsers:[]
   },
 
   /**
@@ -73,7 +73,7 @@ Page({
   },
   getMyUsers(){
     let that = this;
-    app.httpGet("user/GetMyRecommenders", function (res) {
+    app.httpGet("spread/GetMyRecommenders", function (res) {
       that.setData({
         myUsers: res
       });

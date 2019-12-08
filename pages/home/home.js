@@ -15,6 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that=this;
     if(options!=null&options.scene!=null){
       if(options.scene.startsWith("id")){
         var timeInterval=setInterval(function(){
@@ -23,7 +24,7 @@ Page({
             return;
           scene = decodeURIComponent(options.scene);
           var id = scene.replace("id", "");
-          collectShop(id);
+          that.collectShop(id);
           clearInterval(timeInterval);
         },200);
         
@@ -35,7 +36,7 @@ Page({
             return;
           scene = decodeURIComponent(options.scene);
           var id = scene.replace("user", "");
-          recommend(id);
+          that.recommend(id);
           clearInterval(timeInterval);
         }, 200);
       }
@@ -163,6 +164,7 @@ Page({
     });
   },
   collectShop(id) {
+    let that=this;
     app.httpPost("shop/CollectShop?shopid=" + id, null, function (result) {
       that.loadShops();
       wx.showToast({
