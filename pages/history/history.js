@@ -85,6 +85,7 @@ Page({
       that.setData({
         orders: that.data.orders
       });
+      wx.stopPullDownRefresh();
     });
   },
   toDetail(e){

@@ -46,6 +46,7 @@ Page({
   onPullDownRefresh: function () {
     let that = this;
     that.loadTodayOrder();
+    that.loadShops();
   },
 
   /**
@@ -125,6 +126,8 @@ Page({
       that.setData({
         shops:result
       });
+
+      wx.stopPullDownRefresh();
     });
   },
   copyOrder(e) {
