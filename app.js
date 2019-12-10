@@ -7,7 +7,7 @@ App({
     
   },
   globalData: {
-    apiurl: 'http://192.168.124.13/',
+    apiurl: 'http://132.232.158.58/',
     arrives: [
       { key: 15, value: '15分钟左右取' },
       { key: 30, value: '30分钟左右取' },
@@ -123,6 +123,15 @@ App({
         title: '登陆失效，请重试',
         icon: 'none'
       });
+      that.login();
+      return;
+    }
+    if(response.statusCode==401){
+      wx.showToast({
+        title: '登陆失效，请重试',
+        icon: 'none'
+      });
+      wx.removeStorageSync("token");
       that.login();
       return;
     }
