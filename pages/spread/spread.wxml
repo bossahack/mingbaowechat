@@ -1,4 +1,5 @@
 <wxs module="filters" src="../../utils/filters.wxs"></wxs>
+<view class="box-wrapper">
 <view>有效收益：￥{{income}}</view>
 
 <view class="row text-center" >昨日统计</view>
@@ -7,7 +8,7 @@
   <view class="weui-flex__item text-right right" style="font-weight:bold">有效单</view>
 </view>
  <view class="weui-flex item" wx:for="{{shopOrders}}" wx:key="{{order.Id}}" wx:for-index="index" wx:for-item="order">
-    <view class="weui-flex__item left">{{order.ShopName}}:</view>
+    <view class="weui-flex__item left">{{order.ShopName}}</view>
     <view class="right">{{order.EffectQty}}</view>
   </view>
 <view wx-if="{{shopOrders.length==0}}" class="no-data">
@@ -40,4 +41,5 @@
 </view>
 <view wx-if="{{myUsers.length==0}}" class="no-data">
   暂无数据 
+</view>
 </view>

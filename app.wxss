@@ -34,3 +34,4 @@
 .row{padding-top: 50rpx;}
 .no-data{text-align: center;font-size: 12px;color: rgba(0,0,0,.5);}
 .bold{font-weight: bold;}
+.box-wrapper{padding-left: 30rpx;padding-right: 30rpx;}
