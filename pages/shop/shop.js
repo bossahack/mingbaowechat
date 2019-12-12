@@ -4,6 +4,7 @@ const app = getApp();
 Component({
   behaviors: [computedBehavior],
   data: {
+    imgDomain:app.globalData.imgDomain,
     shopId:0,
     typeSelectedIndex:0,
     foodLabel:'A0',
@@ -197,8 +198,14 @@ methods:{
                 foodName += food.Name + ",";
               }
             });
+            that.data.selectedFoods.forEach((food,index)=>{
+              if (ids.indexOf(food.id.toString()) > -1) {
+                food.Status = 1;
+              }
+            });
             that.setData({
-              foods: that.data.foods
+              foods: that.data.foods,
+              selectedFoods:that.data.selectedFoods
             });
             wx.showModal({
               title: '失败啦！',

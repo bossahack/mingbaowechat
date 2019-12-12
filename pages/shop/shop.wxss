@@ -1,14 +1,15 @@
 page,.page,.page__bd{height: 100%;font-size:32rpx;}
-.main{height:100%;padding-bottom: 100rpx;}
+.main{height:100%;}
 .type{background-color: #f8f8f8;height: 100%;width:200rpx;}
 .type .item{padding:15rpx;}
 .type .item.selected{background-color: white;}
+.food{padding-bottom: 120rpx;}
+.type-wrapper{height: 50rpx;background-color: #f8f8f8;}
 
 .car-wrapper{justify-content:space-around;position: fixed;bottom: 0;left:0;right:0;height:100rpx;border:1px solid #eee;border-radius: 10rpx;background-color: white;}
 .car-left{align-items: center;}
 .car-right{background: rgba(255, 208, 0, 1);border-radius: 30rpx;width:150rpx;text-align: center;height: 100rpx;line-height: 100rpx;}
 
-.car-details{}
 .mask{position: fixed;top: 0;right: 0;bottom: 0;left: 0;background: rgba(0, 0, 0, 0.4)}
 
 .detail-content{position: fixed;bottom: 100rpx;left: 0;right: 0;background: #fff;padding-left: 20rpx;padding-right: 20rpx;}

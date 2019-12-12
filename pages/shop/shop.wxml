@@ -4,7 +4,7 @@
 
     <view class="weui-flex"  style="background:#eee;">
         <view>
-          <image src="{{shop.Logo}}"  style="width: 200rpx;height: 200rpx; margin:0rpx 20rpx 0 20rpx;border:1px solid #eee;border-radius:20rpx;" ></image>
+          <image src="{{imgDomain+shop.Logo}}"  style="width: 200rpx;height: 200rpx; margin:0rpx 20rpx 0 20rpx;border:1px solid #eee;border-radius:20rpx;" ></image>
         </view>
         <view class="weui-flex__item">
           <view class="p">{{shop.Name}}</view>
@@ -22,14 +22,15 @@
 
         <scroll-view class="weui-flex__item food" scroll-y="true" scroll-into-view="{{foodLabel}}" scroll-with-animation="true">
           <view class="item" wx:for="{{foods}}" wx:for-index="index" wx:for-item="food" wx:key="index">
+          <view wx:if="{{food.Level==0&&index!=0}}" class="type-wrapper"></view>
             <view class="weui-flex"> 
               <view>
-                <image src="{{food.Img}}"  style="width: 150rpx;height: 150rpx; margin:0rpx 20rpx 0 20rpx;border:1px solid #eee;border-radius:20rpx;" lazy-load="true"></image>
+                <image src="{{imgDomain+food.Img}}"  style="width: 150rpx;height: 150rpx; margin:0rpx 20rpx 0 20rpx;border:1px solid #eee;border-radius:20rpx;" lazy-load="true"></image>
               </view>
               <view class="weui-flex__item" id="{{'A'+food.Type+':'+food.Level}}">
                 <view style="font-size:32rpx;">{{food.Name}}</view>
                 <view style="color:#cc6e00;">￥:{{food.Price}}</view>
-                <view class="weui-flex" style="justify-content:flex-end;align-items:center;padding-right:10rpx;">
+                <view class="weui-flex" style="justify-content:flex-end;align-items:center;padding-right:30rpx;">
                   <text class="red" wx:if="{{food.Status!=0}}">卖没啦</text>
                     <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png" wx-if="{{food.qty>0}}" bindtap="minusFood" data-id="{{food.Id}}" />
                  <text style="margin-left:10rpx;margin-right:10rpx;" wx:if="{{food.qty!=0}}" >{{food.qty}}</text>
@@ -56,9 +57,10 @@
             <view class="left weui-flex__item">{{food.name}}</view>
             <view class="center weui-flex__item">￥{{food.price}}</view>
             <view class="right weui-flex__item weui-flex">
+              <text class="red" wx:if="{{food.Status===1}}">卖没啦</text>
               <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png"  bindtap="minusFood" data-id="{{food.id}}" />
               <text style="margin-left:10rpx;margin-right:10rpx;">{{food.qty}}</text>
-              <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" bindtap="plusFood" data-id="{{food.id}}" />
+              <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" bindtap="plusFood" data-id="{{food.id}}" wx:if="{{!(food.Status===1)}}" />
             </view>
           </view>
           
