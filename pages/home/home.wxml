@@ -8,7 +8,7 @@
                 <navigator url="/pages/order/order?id={{order.Id}}" class="weui-media-box" hover-class="weui-cell_active"  wx:for="{{orders}}" wx:for-index="index" wx:for-item="order" wx:key="index" >
                     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                         <view class="weui-flex weui-media-box__title">
-                            <view class="weui-flex__item">单号:{{order.TakeCode}}</view>
+                            <view class="weui-flex__item">单号:<text class="bold">#{{order.TakeCode}}</text></view>
                             <view wx-if="{{order.Status!=30&&order.Status!=40}}" >￥{{filters.getTotalPrice(order.items)}}</view>
                             <view wx-if="{{order.Status==30}}" class="red" >已取消</view>
                             <view wx-if="{{order.Status==40}}" class="red" >异常单</view>

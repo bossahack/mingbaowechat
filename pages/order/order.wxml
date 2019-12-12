@@ -27,8 +27,8 @@
                 <view class="weui-flex__item">￥{{filters.getTotalPrice(order.OrderItems)}}</view>
             </view>
             <view class="weui-flex">
-                <view >取号码：</view>
-                <view class="weui-flex__item">{{order.Orders[0].TakeCode}}</view>
+                <view >单号：</view>
+                <view class="weui-flex__item">#{{order.Orders[0].TakeCode}}</view>
             </view>
             <view class="weui-flex">
                 <view >到店时间：</view>
@@ -40,7 +40,7 @@
             </view>
             <view class="weui-flex">
                 <view >状态：</view>
-                <view class="weui-flex__item">{{filters.getStatusDesc(order.Orders[0].Status)}}</view>
+                <view class="weui-flex__item {{order.Orders[0].status==40?'red':''}}">{{filters.getStatusDesc(order.Orders[0].Status)}}</view>
             </view>
             <view class="weui-flex">
                 <view >备注：</view>

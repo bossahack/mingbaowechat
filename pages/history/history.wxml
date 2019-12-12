@@ -14,7 +14,7 @@
   </view>
   <view class="weui-flex item">
     <view class="left">状态：</view>
-    <view class="weui-flex__item right">{{filters.getStatusDesc(order.status)}}</view>
+    <view class="weui-flex__item right {{order.status==40?'red':''}}" >{{filters.getStatusDesc(order.status)}}</view>
   </view>
 </view>
 <view wx-if="{{noMore}}" class="no-data">
