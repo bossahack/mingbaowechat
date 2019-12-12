@@ -35,6 +35,9 @@
   <view class="weui-flex__item left">{{user.WXName}}</view>
   <view class="weui-flex__item text-right right">{{user.HasShop?"有":"无"}}</view>
 </view>
+<view wx-if="{{!nomore}}" bindtap="getMyUsers" class="no-data">
+  点击加载更多 
+</view>
 <view wx-if="{{myUsers.length==0}}" class="no-data">
   暂无数据 
 </view>

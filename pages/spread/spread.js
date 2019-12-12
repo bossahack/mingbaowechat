@@ -6,7 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    myUsers:[]
+    myUsers:[],
+    pageIndex:0,
+    nomore:false
   },
 
   /**
@@ -73,9 +75,22 @@ Page({
   },
   getMyUsers(){
     let that = this;
-    app.httpGet("spread/GetMyRecommenders", function (res) {
+    app.httpGet("spread/GetMyRecommenders?index="+that.data.pageIndex, function (res) {
+      that.data.pageIndex++;
+      if(res==null||res.length<10){
+        that.setData({
+          nomore: true,
+        });
+      }
+      if(res!=null&&res.length>0){
+        that.data.myUsers.push(...res);
+        that.setData({
+          myUsers: that.data.myUsers
+        });
+      }      
       that.setData({
-        myUsers: res
+        myUsers: that.data.myUsers,
+        pageIndex:that.data.pageIndex
       });
     })
   }
