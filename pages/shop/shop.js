@@ -70,6 +70,13 @@ methods:{
 
   },
 
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh();
+  },
+
   typeTap(e){
     var id = e.target.dataset.typeid;
     this.setData({
