@@ -7,6 +7,7 @@ App({
     
   },
   globalData: {
+    // apiurl: 'http://172.18.23.53/',
     apiurl: 'http://132.232.158.58/',
     arrives: [
       { key: 15, value: '15分钟左右取' },
@@ -22,7 +23,8 @@ App({
       { key: 30, value: '已取消' },
       { key: 40, value: '异常单' },
     ],
-    bus: eventBus.eventBus
+    bus: eventBus.eventBus,
+    imgDomain:'http://img.danshenchong.com/'
   },
   login: function () {
     var that = this;

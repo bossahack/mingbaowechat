@@ -16,54 +16,47 @@ Page({
   onLoad: function (options) {
     var timeInterval = setInterval(function () {
       var token = wx.getStorageSync("token");
-      if (token == null)
+      if (!token)
         return;
       clearInterval(timeInterval);
       wx.switchTab({
         url: 'home/home',
       });
-    }, 200);
+    }, 300);
     
-    // bus.on("loginSuccess", (result) => {
-    //   wx.switchTab({
-    //     url: 'home/home',
-    //   });
-    // });
+
+    //测试完成后删除此代码
     let that=this;
     if (options != null & options.scene != null) {
+      clearInterval(timeInterval);
       if (options.scene.startsWith("id")) {
-        // var timeInterval = setInterval(function () {
+        var timeInterval = setInterval(function () {
           var token = wx.getStorageSync("token");
-          if (token == null)
+          if (!token)
             return;
           var scene = decodeURIComponent(options.scene);
           var id = scene.replace("id", "");
           that.collectShop(id);
           clearInterval(timeInterval);
-        // }, 200);
+        }, 200);
 
       }
       if (options.scene.startsWith("user")) {
-        // var timeInterval = setInterval(function () {
+        var timeInterval = setInterval(function () {
           var token = wx.getStorageSync("token");
-          if (token == null)
+          if (!token)
             return;
-          scene = decodeURIComponent(options.scene);
+          var scene = decodeURIComponent(options.scene);
           var id = scene.replace("user", "");
           that.recommend(id);
           clearInterval(timeInterval);
-        // }, 200);
+        }, 200);
       }
     }
   },
   collectShop(id) {
     let that=this;
     app.httpPost("shop/CollectShop?shopid=" + id, null, function (result) {
-      that.loadShops();
-      wx.showToast({
-        title: '关注成功',
-        icon: 'success'
-      });
     });
   },
   recommend(userId) {

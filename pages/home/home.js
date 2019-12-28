@@ -20,9 +20,9 @@ Page({
       if(options.scene.startsWith("id")){
         var timeInterval=setInterval(function(){
           var token = wx.getStorageSync("token");
-          if(token==null)
+          if(!token)
             return;
-          scene = decodeURIComponent(options.scene);
+          var scene = decodeURIComponent(options.scene);
           var id = scene.replace("id", "");
           that.collectShop(id);
           clearInterval(timeInterval);
@@ -32,9 +32,9 @@ Page({
       if(options.scene.startsWith("user")){
         var timeInterval = setInterval(function () {
           var token = wx.getStorageSync("token");
-          if (token == null)
+          if (!token)
             return;
-          scene = decodeURIComponent(options.scene);
+          var scene = decodeURIComponent(options.scene);
           var id = scene.replace("user", "");
           that.recommend(id);
           clearInterval(timeInterval);
