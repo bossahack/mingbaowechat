@@ -75,10 +75,10 @@
           </picker>
         </view>
         <view class="weui-flex__item">
-          <textarea placeholder="备注" maxlength="50" bindinput="inputNote"></textarea>
+        <view class="note" bindtap="toggleInput" wx-if="{{!isTrueInput}}">{{!!note?note:"备注"}}</view>
         </view>
       </view>
-
+    
       </view>
     </view>
 
@@ -101,5 +101,8 @@
         <view bindtap="ok">下单</view>
       </view>
     </view>
+    
+    <textarea placeholder="备注" maxlength="50" value="{{note}}" bindinput="inputNote" wx-if="{{isTrueInput}}" auto-focus="{{true}}" adjust-position="{{false}}" bindconfirm="inputConfirm" bindblur="inputblue"></textarea>
+
   </view>
 </view>

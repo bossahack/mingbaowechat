@@ -24,6 +24,7 @@ Component({
     ],
     selectedFoods:[
     ],
+    isTrueInput:false
   },
   computed:{
     totalPrice(data) {
@@ -242,6 +243,24 @@ methods:{
       }
     })
    
+  },
+  toggleInput(){
+    let that = this;
+    this.setData({
+      isTrueInput: true
+    });
+  },
+  inputConfirm(){
+    let that = this;
+    this.setData({
+      isTrueInput: false
+    });
+  },
+  inputblue(){
+    let that = this;
+    this.setData({
+      isTrueInput: false
+    });
   }
 }
 })

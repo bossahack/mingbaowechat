@@ -7,8 +7,8 @@ App({
     
   },
   globalData: {
-    // apiurl: 'http://172.18.23.53/',
-    apiurl: 'http://132.232.158.58/',
+    // apiurl: 'http://172.18.23.28/',
+    apiurl: 'http://danshenchong.com/',
     arrives: [
       { key: 15, value: '15分钟左右取' },
       { key: 30, value: '30分钟左右取' },

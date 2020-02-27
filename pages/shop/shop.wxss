@@ -18,6 +18,7 @@ page,.page,.page__bd{height: 100%;font-size:32rpx;}
 .detail-content .items .item .left{flex: 5;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;}
 .detail-content .items .item .center{flex: 1;}
 .detail-content .items .item .right{flex: 2;justify-content:flex-end;align-items:center;padding-right:10rpx;}
-textarea{width: 99%;height: 90rpx;border: 1px solid #eee;}
+textarea{width: 99%;height: 60%;border: 1px solid #eee;position:absolute;top: 0rpx;background-color: white;}
 .detail-content .itemarrive{padding-bottom: 10rpx;}
 .detail-content .itemarrive .weui-flex__item:last-child{padding-left: 10rpx;}
+.note{height: 90rpx;width:99%;border:1px solid #eee;}
