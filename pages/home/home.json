@@ -1,5 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+  },
   "window": {
     "navigationBarTitleText": "不排队"
   }

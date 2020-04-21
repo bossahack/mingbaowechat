@@ -24,7 +24,8 @@ Component({
     ],
     selectedFoods:[
     ],
-    isTrueInput:false
+    isTrueInput:false,
+    showGetUserInfo:false
   },
   computed:{
     totalPrice(data) {
@@ -34,21 +35,13 @@ Component({
     }
   },
 methods:{
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
+    let that=this;
     var dbInfo = wx.getStorageSync('userInfo');
     if (dbInfo == null || !dbInfo.WXName) {
-      wx.showModal({
-        title: '请先登录',
-        content: '请先登录',
-        success() {
-          wx.switchTab({
-            url: '../mine/mine',
-          });
-        }
-      })
+      that.setData({
+        showGetUserInfo:true
+      });
     }
 
     this.data.shopId=options.id;
@@ -181,7 +174,14 @@ methods:{
     this.setData({note:e.detail.value});
   },
   ok(){
-    let that=this;
+    let that = this; 
+    var dbInfo = wx.getStorageSync('userInfo');
+    if (dbInfo == null || !dbInfo.WXName) {
+      that.setData({
+        showGetUserInfo: true
+      });
+      return;
+    }
     if(that.data.selectedFoods==null||that.data.selectedFoods.length<=0){
       return;
     }
@@ -260,6 +260,27 @@ methods:{
     let that = this;
     this.setData({
       isTrueInput: false
+    });
+  },
+  getUserInfo: function (e) {
+    var that = this;
+    if (!e.detail.userInfo){
+      that.setData({
+        showGetUserInfo: false
+      });
+      return;
+    }
+    app.httpPost("user/UpdateWXInfo", e.detail.userInfo, function (result) {
+      wx.setStorageSync('userInfo', result);
+      that.setData({
+        showGetUserInfo: false
+      });
+    });
+  },
+  cancelGetUserInfo(){
+    var that = this;
+    that.setData({
+      showGetUserInfo: false
     });
   }
 }

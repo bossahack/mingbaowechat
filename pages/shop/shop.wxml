@@ -106,3 +106,15 @@
 
   </view>
 </view>
+<mp-halfScreenDialog 
+  bindbuttontap="buttontap"
+  show="{{showGetUserInfo}}"
+  maskClosable="{{false}}" 
+  title="申请" 
+  desc="获取您的头像、昵称"
+>
+<view slot="footer" class="weui-flex">
+<button bindtap="cancelGetUserInfo">取消 </button>
+  <button type="primary"  open-type="getUserInfo" bindgetuserinfo="getUserInfo" > 允许 </button>
+</view>
+</mp-halfScreenDialog>
