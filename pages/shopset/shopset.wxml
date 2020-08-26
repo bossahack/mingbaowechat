@@ -1,5 +1,5 @@
 
-  <view class="text-center link row" bindtap="showIntro" wx:if="{{!hasShop}}" >开通店铺</view>
+  <view class="text-center row" bindtap="showIntro" wx:if="{{!hasShop}}" >注册</view>
   <form bindsubmit="confirmJoin"  wx:if="{{!hasShop}}">
     <view class="weui-flex row" >
       <view class="text-right">登录帐号:</view>
@@ -39,5 +39,5 @@
 
 
 <view class="text-center join-us">
-<view>商家端下载地址：<text style="font-size:12px;" selectable="true">{{downUrl}}</text></view>
+<view wx:if="{{hasShop}}">商家端下载地址：<text style="font-size:12px;" selectable="true">{{downUrl}}</text></view>
 </view>

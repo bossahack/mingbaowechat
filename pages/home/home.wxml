@@ -25,7 +25,7 @@
                     </view>
                 </navigator>
                 <view wx-if="{{orders.length==0}}" class="weui-media-box  nodata">
-                  木有唉，关注店铺就可下单啦
+                  木有唉
                 </view>
             </view>
         </view>
@@ -52,8 +52,8 @@
         <view class="weui-panel weui-panel_access">
             <view class="weui-panel__hd weui-flex">
                   <view class="weui-flex__item">关注店家</view>
-                  <view ><button class="weui-btn mini-btn" type="primary" size="mini" bindtap="scancode" >扫码关注</button>
-              </view>
+                  <!-- <view  ><button class="weui-btn mini-btn" type="primary" size="mini" bindtap="scancode" >扫码关注</button>
+              </view> -->
             </view>
             <view class="weui-panel__bd">
                 <view  class="weui-media-box " >
@@ -66,8 +66,6 @@
                     
                     <view wx-if="{{shops==null||shops.length==0}}" class="nodata">
                     <view>木有唉</view>
-                      <view>扫码关注你喜欢的店铺，便可提前预约，到店享用或自提哦。</view>
-                      <view>店家没有开通？成为推广者，一次推广，长久收益哦！详情见“我的”</view>
                     </view>
                 </view>
             </view>

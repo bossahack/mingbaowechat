@@ -102,7 +102,7 @@ Page({
         hasShop: true
       });
       wx.showToast({
-        title: '开通成功！您可通过此账号密码到app端登录',
+        title: '注册成功！',
         icon: 'success',
         duration:3000
       });
