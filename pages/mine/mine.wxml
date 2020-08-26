@@ -9,40 +9,6 @@
 </view>
 
 
-<view wx:if="{{userInfoDb.Type==1||showjoin}}" style="margin-bottom:60px;">
-
-  <view class="text-center link row" bindtap="showIntro">介绍</view>
-  <scroll-view class="intro" wx:if="{{introShow}}" >
-    <rich-text nodes="{{intro}}"></rich-text>
-  </scroll-view>
-
-  <view class="text-center link row" bindtap="showEdit">编辑资料</view>
-  <form bindsubmit="confirmJoin" wx:if="{{editShow}}">
-    <view class="weui-flex row" >
-      <view class="weui-flex__item text-right">联系方式:</view>
-        <view class="weui-flex__item">
-            <input type="text" class="input" placeholder="微信号" maxlength="20" value="{{userInfoDb.WxNum}}" name="wxnum"></input>
-        </view>
-    </view>
-    <view class="text-center row">
-      <button type="primary" formType="submit" size="mini">确定加入</button>
-    </view>
-  </form>
-
-  <view class="text-center link row" bindtap="showQrcode" wx:if="{{userInfoDb.Type==1}}">展示推广码</view>
-  <view class="text-center {{qrShow?'qr-show':''}}" wx:if="{{qrShow}}"  bindtap="showQrcode">
-    <image src="{{qrCode}}" style="width:700rpx; " mode="aspectFit"></image>
-  </view>
-
-  <view class="text-center link row"  wx:if="{{userInfoDb.Type==1}}">
-  <navigator url="/pages/spread/spread">我的推广</navigator>
-  </view>
-
-</view>
-
-
 <view class="text-center join-us">
-  <!-- <view style="font-size:14px;">有限的劳动，长久的收益</view>
-  <text class="link" bindtap='showJoin'  wx:if="{{userInfoDb.Type!=1}}">---加入我们---</text> -->
   <text class="link" bindtap='toShopSet'>---商家入口---</text>
 </view>

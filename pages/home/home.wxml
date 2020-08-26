@@ -52,8 +52,7 @@
         <view class="weui-panel weui-panel_access">
             <view class="weui-panel__hd weui-flex">
                   <view class="weui-flex__item">关注店家</view>
-                  <!-- <view  ><button class="weui-btn mini-btn" type="primary" size="mini" bindtap="scancode" >扫码关注</button>
-              </view> -->
+                  
             </view>
             <view class="weui-panel__bd">
                 <view  class="weui-media-box " >
