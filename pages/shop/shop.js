@@ -5,7 +5,7 @@ Component({
   behaviors: [computedBehavior],
   data: {
     imgDomain:app.globalData.imgDomain,
-    shopId:0,
+    shopId:1,
     typeSelectedIndex:0,
     foodLabel:'A0',
     arriveIndex:0,
@@ -25,7 +25,10 @@ Component({
     selectedFoods:[
     ],
     isTrueInput:false,
-    showGetUserInfo:false
+    showGetUserInfo:false,
+    showBindPhone:true,
+    phone:null,
+    code:''
   },
   computed:{
     totalPrice(data) {
@@ -45,9 +48,9 @@ methods:{
     }
 
     this.data.shopId=options.id;
-    this.loadType();
-    this.loadProduct();
-    this.loadShop();
+    // this.loadType();
+    // this.loadProduct();
+    // this.loadShop();
   },
 
   /**
@@ -182,6 +185,12 @@ methods:{
       });
       return;
     }
+    if (dbInfo == null || !dbInfo.WXPhone) {
+      that.setData({
+        showBindPhone: true
+      });
+      return;
+    }
     if(that.data.selectedFoods==null||that.data.selectedFoods.length<=0){
       return;
     }
@@ -282,6 +291,64 @@ methods:{
     that.setData({
       showGetUserInfo: false
     });
+  },
+  phoneChange(e){
+    this.setData({
+      phone: e.detail.value
+    });
+  },
+  codeChange(e){
+    this.setData({
+      code: e.detail.value
+    });
+  },
+  sendCode(e){
+    let that = this;
+    var phone = that.data.phone;
+    if (!phone) {
+      wx.showToast({
+        title: '请输入手机号',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!RegExp("^[1][3,4,5,7,8][0-9]{9}\$").test(phone)){
+      wx.showToast({
+        title: '手机号格式不正确，请检查',
+        icon: 'none'
+      });
+      return;
+    }
+    app.httpPost("user/sendcode?phone="+phone, function (result) {
+     wx.showToast({
+       title: '短信已发送，请在10分钟内完成验证',
+     })
+    });
+  },
+  bindPhone(e){
+    let that = this;
+    var code = that.data.code;
+    if (!code) {
+      wx.showToast({
+        title: '请输入验证码',
+        icon: 'none'
+      });
+      return;
+    }
+    if(code.length!=4){
+      wx.showToast({
+        title: '请输入4位验证码',
+        icon: 'none'
+      });
+      return;
+    }
+
+    app.httpPost("user/UpdatePhone?code="+code, function (result) {
+      wx.setStorageSync('userInfo', result);
+      that.setData({
+        showBindPhone: false
+      });
+     });
   }
 }
 })

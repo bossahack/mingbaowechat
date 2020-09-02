@@ -22,3 +22,6 @@ textarea{width: 99%;height: 60%;border: 1px solid #eee;position:absolute;top: 0r
 .detail-content .itemarrive{padding-bottom: 10rpx;}
 .detail-content .itemarrive .weui-flex__item:last-child{padding-left: 10rpx;}
 .note{height: 90rpx;width:99%;border:1px solid #eee;}
+
+.phone-wrapper .weui-half-screen-dialog__bd{margin-left: -50rpx;margin-right: -50rpx;}
+.phone-wrapper .weui-label{width:156rpx;}
