@@ -12,7 +12,7 @@ Component({
     note:'',
     carDetailShow:false,
     shop:{
-      Id:1,
+      Id:0,
       Name:'',
       Address:'',
       Logo:''
@@ -26,9 +26,11 @@ Component({
     ],
     isTrueInput:false,
     showGetUserInfo:false,
-    showBindPhone:true,
+    showBindPhone:false,
     phone:null,
-    code:''
+    code:'',
+    phoneDisable:false,
+    countdown:0,
   },
   computed:{
     totalPrice(data) {
@@ -48,9 +50,9 @@ methods:{
     }
 
     this.data.shopId=options.id;
-    // this.loadType();
-    // this.loadProduct();
-    // this.loadShop();
+    this.loadType();
+    this.loadProduct();
+    this.loadShop();
   },
 
   /**
@@ -185,7 +187,7 @@ methods:{
       });
       return;
     }
-    if (dbInfo == null || !dbInfo.WXPhone) {
+    if (dbInfo == null || !dbInfo.WxPhone) {
       that.setData({
         showBindPhone: true
       });
@@ -319,7 +321,21 @@ methods:{
       });
       return;
     }
-    app.httpPost("user/sendcode?phone="+phone, function (result) {
+    if(that.data.countdown>0){
+      return;
+    }
+    that.setData({
+      countdown:60
+    });
+    let countdownInterval=setInterval(() => {
+      that.setData({
+        countdown:that.data.countdown-1
+      });
+      if(that.data.countdown<=0){
+        clearInterval(countdownInterval);
+      }
+    }, 1000);
+    app.httpPost("user/SendCode?phone="+phone,null, function (result) {
      wx.showToast({
        title: '短信已发送，请在10分钟内完成验证',
      })
@@ -343,7 +359,7 @@ methods:{
       return;
     }
 
-    app.httpPost("user/UpdatePhone?code="+code, function (result) {
+    app.httpPost("user/UpdatePhone?code="+code, null,function (result) {
       wx.setStorageSync('userInfo', result);
       that.setData({
         showBindPhone: false

@@ -127,14 +127,14 @@
 >
 <view slot="title">绑定手机号</view>
 <view slot="desc" class="weui-flex">
-  <mp-form id="form"  >
+  <mp-form  >
     <mp-cells >
-      <mp-cell prop="mobile" title="手机号" ext-class=" weui-cell_vcode">
-          <input bindinput="formInputChange" name="phone" class="weui-input" bindinput="phoneChange" placeholder="请输入手机号"/>
-          <view slot="footer" class="weui-vcode-btn" bindtap="sendCode">获取验证码</view>
+      <mp-cell prop="mobile" title="手机号">
+          <input bindinput="phoneChange" name="phone" class="weui-input" bindinput="phoneChange" placeholder="请输入手机号" disabled="{{phoneDisable}}" />
+          <view slot="footer" class="weui-vcode-btn" bindtap="sendCode">{{countdown<=0?"获取验证码":countdown+"秒后可重试"}}</view>
       </mp-cell>
       <mp-cell prop="vcode" title="验证码" ext-class=" weui-cell_vcode">
-          <input bindinput="formInputChange" data-field="vcode" class="weui-input" placeholder="请输入验证码"/>
+          <input bindinput="codeChange" data-field="vcode" class="weui-input" placeholder="请输入验证码"/>
       </mp-cell>
     </mp-cells>
   </mp-form>
