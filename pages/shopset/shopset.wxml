@@ -39,5 +39,5 @@
 
 
 <view class="text-center join-us">
-<view wx:if="{{hasShop}}">商家端下载地址：<text style="font-size:12px;" selectable="true">{{downUrl}}</text></view>
+<view wx:if="{{hasShop}}">商家端：<text style="font-size:12px;background-color: #e0e0f3;" selectable="true" bindtap="copyUrl" bindlongpress="copyUrl">{{downUrl}}</text></view>
 </view>

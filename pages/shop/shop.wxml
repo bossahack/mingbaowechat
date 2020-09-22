@@ -9,6 +9,7 @@
         <view class="weui-flex__item">
           <view class="p">{{shop.Name}}</view>
           <view class="p">{{shop.Address}}</view>
+          <view class="p" >联系电话：{{shop.Phone}}</view>
           <view class="p red" >{{shop.Status==10?"今天不营业":""}}</view>
         </view>
     </view>

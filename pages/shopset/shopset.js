@@ -141,5 +141,14 @@ Page({
         downUrl: res
       });
     });
+  },
+  copyUrl(){
+    let that=this;
+    wx.setClipboardData({
+      data: that.data.downUrl,
+      success:function(res){
+        console.log(res);
+      }
+    })
   }
 })
