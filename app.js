@@ -7,8 +7,8 @@ App({
     
   },
   globalData: {
-    apiurl: 'http://172.18.113.57:8077/',
-    // apiurl: 'https://shashadi.com/',
+    // apiurl: 'http://localhost:1935/',
+    apiurl: 'https://shashadi.com/',
     arrives: [
       { key: 15, value: '15分钟左右取' },
       { key: 30, value: '30分钟左右取' },
@@ -24,7 +24,7 @@ App({
       { key: 40, value: '异常单' },
     ],
     bus: eventBus.eventBus,
-    imgDomain:'http://img.danshenchong.com/'
+    imgDomain:'http://ct.shashadi.com/'
   },
   login: function () {
     var that = this;

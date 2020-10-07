@@ -117,6 +117,9 @@ methods:{
   loadShop(){
     let that = this;
     app.httpGet("shop/GetInfo_U?id=" + this.data.shopId, function (result) {
+      if(!result.Logo){
+        result.Logo='logo.png';
+      }
       that.setData({
         shop: result
       });
