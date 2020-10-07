@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/shop/shop",
     "pages/love",
     "pages/home/home",
     "pages/mine/mine",
     "pages/history/history",
     "pages/order/order",
-    "pages/shopset/shopset"
+    "pages/shopset/shopset",
+    "pages/shop/shop"
   ],
   "window": {
     "backgroundTextStyle": "dark",
