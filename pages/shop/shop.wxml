@@ -32,7 +32,7 @@
                 <view style="font-size:32rpx;">{{food.Name}}</view>
                 <view style="color:#cc6e00;">￥:{{food.Price}}</view>
                 <view class="weui-flex" style="justify-content:flex-end;align-items:center;padding-right:30rpx;">
-                  <text class="red" wx:if="{{food.Status!=0}}">卖没啦</text>
+                  <text class="red" wx:if="{{food.Status!=0}}">木有啦</text>
                     <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png" wx-if="{{food.qty>0}}" bindtap="minusFood" data-id="{{food.Id}}" />
                  <text style="margin-left:10rpx;margin-right:10rpx;" wx:if="{{food.qty!=0}}" >{{food.qty}}</text>
                     <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" bindtap="plusFood" data-id="{{food.Id}}" wx:if="{{food.Status==0}}" />
@@ -58,7 +58,7 @@
             <view class="left weui-flex__item">{{food.name}}</view>
             <view class="center weui-flex__item">￥{{food.price}}</view>
             <view class="right weui-flex__item weui-flex">
-              <text class="red" wx:if="{{food.Status===1}}">卖没啦</text>
+              <text class="red" wx:if="{{food.Status===1}}">木有啦</text>
               <image  class="weui_flex__item icon" src="../../resources/imgs/reduce_icon.png"  bindtap="minusFood" data-id="{{food.id}}" />
               <text style="margin-left:10rpx;margin-right:10rpx;">{{food.qty}}</text>
               <image  class="weui_flex__item icon" src="../../resources/imgs/add_icon.png" bindtap="plusFood" data-id="{{food.id}}" wx:if="{{!(food.Status===1)}}" />
@@ -86,7 +86,7 @@
     <view class="weui-flex car-wrapper" >
       <view class="weui_flex__item weui-flex car-left" bindtap="toggleDetail">
         <view class="weui_flex__item" style="position:relative">
-          <image src="../../resources/imgs/shop_car.png" style="width:60rpx;height:60rpx;"></image>
+          <image src="../../resources/imgs/car.png" style="width:60rpx;height:60rpx;"></image>
           <view class="icon-num">
           {{selectedFoods.length}}
           </view>
@@ -99,7 +99,7 @@
         {{arrives[arriveIndex].value}}
       </view>
       <view class="weui_flex__item car-right">
-        <view bindtap="ok">下单</view>
+        <view bindtap="ok">预定</view>
       </view>
     </view>
     
